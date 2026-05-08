@@ -21,7 +21,7 @@ export default function Footer() {
               Platform
             </h3>
             <ul className="space-y-3">
-              <li><Link href="#use-cases" className="text-sm text-neutral-500 hover:text-white transition-colors">Use Cases</Link></li>
+              <li><Link href="#gitlab-ci" className="text-sm text-neutral-500 hover:text-white transition-colors">GitLab CI</Link></li>
               <li><Link href="#technology" className="text-sm text-neutral-500 hover:text-white transition-colors">Technology</Link></li>
               <li><Link href="#enterprise" className="text-sm text-neutral-500 hover:text-white transition-colors">Enterprise</Link></li>
             </ul>

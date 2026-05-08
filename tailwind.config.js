@@ -8,22 +8,38 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        slate: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-          950: '#020617',
+        dw: {
+          bg: '#0A0A08',
+          surface: '#1A1814',
+          tan: '#C9A96E',
+          cream: '#EDE9E0',
+          muted: '#7A7570',
+          highlight: '#D4B896',
+          glow: 'rgba(201, 169, 110, 0.08)',
         },
+      },
+      fontFamily: {
+        display: ['var(--font-display)', 'Georgia', 'serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+      },
+      borderRadius: {
+        card: '24px',
+        pill: '999px',
+      },
+      boxShadow: {
+        'dw-glow': '0 0 80px rgba(201, 169, 110, 0.08)',
+        'dw-glow-sm': '0 0 40px rgba(201, 169, 110, 0.06)',
+        'dw-lift': '0 24px 48px rgba(0, 0, 0, 0.45)',
+      },
+      backgroundImage: {
+        'dw-radial-warm':
+          'radial-gradient(ellipse 80% 60% at 85% 12%, rgba(201, 169, 110, 0.14) 0%, transparent 55%)',
+      },
+      spacing: {
+        section: 'clamp(5rem, 12vw, 9rem)',
       },
     },
   },
   plugins: [],
-}
-
+};

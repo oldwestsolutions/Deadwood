@@ -3,37 +3,198 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-rgb: 10, 10, 10;
-  --surface-rgb: 23, 23, 23;
-  --border-rgb: 39, 39, 39;
-  --accent-rgb: 255, 255, 255;
+  --dw-bg: #0a0a08;
+  --dw-surface: #1a1814;
+  --dw-tan: #c9a96e;
+  --dw-cream: #ede9e0;
+  --dw-muted: #7a7570;
+  --dw-highlight: #d4b896;
+  --dw-glow: rgba(201, 169, 110, 0.08);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-  min-height: 100vh;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  body {
+    @apply bg-dw-bg text-dw-cream antialiased;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--dw-tan);
+    outline-offset: 3px;
+  }
 }
 
-/* Enterprise styling - MicroStrategy inspired */
-.bg-grid-pattern {
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
+@layer utilities {
+  .glass-warm {
+    background: linear-gradient(
+      135deg,
+      rgba(26, 24, 20, 0.72) 0%,
+      rgba(26, 24, 20, 0.52) 100%
+    );
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(201, 169, 110, 0.12);
+  }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
+  .text-gradient-tan {
+    background: linear-gradient(
+      180deg,
+      var(--dw-highlight) 0%,
+      var(--dw-tan) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-/* Focus styles for accessibility */
-*:focus-visible {
-  outline: 2px solid rgb(255, 255, 255);
-  outline-offset: 2px;
+  .mesh-layer {
+    background-color: var(--dw-bg);
+    background-image:
+      radial-gradient(
+        ellipse 120% 80% at 90% -10%,
+        rgba(201, 169, 110, 0.18) 0%,
+        transparent 45%
+      ),
+      radial-gradient(
+        ellipse 70% 50% at 15% 60%,
+        rgba(90, 72, 48, 0.35) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 50% 40% at 70% 85%,
+        rgba(42, 38, 32, 0.9) 0%,
+        transparent 55%
+      );
+  }
+
+  .topo-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath fill='none' stroke='%23C9A96E' stroke-opacity='0.07' stroke-width='0.6' d='M0 60 Q30 40 60 60 T120 60 M0 30 Q40 50 80 30 T120 40 M0 90 Q50 70 100 90'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
+  }
+
+  .animate-mesh-drift {
+    animation: mesh-drift 22s ease-in-out infinite alternate;
+  }
+
+  @keyframes mesh-drift {
+    0% {
+      filter: hue-rotate(0deg) saturate(1);
+      transform: scale(1) translate3d(0, 0, 0);
+    }
+    100% {
+      filter: hue-rotate(-6deg) saturate(1.05);
+      transform: scale(1.03) translate3d(-1.2%, 0.8%, 0);
+    }
+  }
+
+  /** GitLab CI illustration section — pipeline beams, grids, MR shimmer */
+  .dw-gitlab-grid {
+    background-image:
+      linear-gradient(to right, rgba(201, 169, 110, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(201, 169, 110, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 85% 75% at 50% 42%, #000 18%, transparent 72%);
+  }
+
+  .dw-gitlab-vignette {
+    mask-image: radial-gradient(ellipse 95% 80% at 50% 45%, #000 0%, transparent 68%);
+  }
+
+  .dw-pipeline-track {
+    background: linear-gradient(
+      90deg,
+      rgba(201, 169, 110, 0.08) 0%,
+      rgba(252, 109, 38, 0.22) 45%,
+      rgba(201, 169, 110, 0.08) 100%
+    );
+    background-size: 240% 100%;
+    animation: dw-pipeline-scan 5s ease-in-out infinite;
+  }
+
+  @keyframes dw-pipeline-scan {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .dw-runner-ring {
+    animation: dw-runner-pulse 3.2s ease-in-out infinite;
+  }
+
+  @keyframes dw-runner-pulse {
+    0%,
+    100% {
+      box-shadow:
+        0 0 0 1px rgba(201, 169, 110, 0.35),
+        0 0 24px rgba(252, 109, 38, 0.08);
+    }
+    50% {
+      box-shadow:
+        0 0 0 1px rgba(252, 109, 38, 0.45),
+        0 0 36px rgba(252, 109, 38, 0.14);
+    }
+  }
+
+  .dw-mr-shimmer {
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(201, 169, 110, 0.06) 40%,
+      rgba(255, 255, 255, 0.04) 50%,
+      rgba(201, 169, 110, 0.06) 60%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: dw-mr-shimmer 4s ease-in-out infinite;
+  }
+
+  @keyframes dw-mr-shimmer {
+    0% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: -100% 50%;
+    }
+  }
+
+  .dw-yaml-glow {
+    box-shadow:
+      0 0 0 1px rgba(201, 169, 110, 0.14),
+      0 24px 48px -20px rgba(0, 0, 0, 0.65),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  /** Chip optimization cards — glass + hover glow */
+  .chip-card {
+    background: rgba(26, 24, 20, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(201, 169, 110, 0.1);
+    border-radius: 20px;
+    padding: 32px;
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+  }
+
+  .chip-card:hover {
+    box-shadow: 0 8px 32px rgba(201, 169, 110, 0.2);
+    border-color: rgba(201, 169, 110, 0.3);
+  }
+
+  .chip-icon {
+    min-height: 56px;
+    margin-bottom: 20px;
+    color: #c9a96e;
+  }
 }

@@ -1,16 +1,32 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Inter } from 'next/font/google';
-import Navbar from '@/components/Navbar';
+import { DM_Serif_Display, DM_Sans, JetBrains_Mono } from 'next/font/google';
 import AuthProvider from '@/components/AuthProvider';
 import { Analytics } from '@vercel/analytics/react';
-import Footer from '@/components/Footer';
 
-const inter = Inter({ subsets: ['latin'] });
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: 'Deadwood.software - Quantum-Powered Food Supply Chain Optimization',
-  description: 'Deadwood.software applies quantum-inspired optimization to reduce waste, volatility, and cost across the entire food supply chain.',
+  title: 'Deadwood — Python as a Service · Numbers as a Service',
+  description:
+    'Compute infrastructure for Monte Carlo simulations, AI training, algorithmic trading, and consequential learning. Deploy Python jobs billed by the cycle.',
 };
 
 export default function RootLayout({
@@ -18,21 +34,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const fontVars = `${dmSerifDisplay.variable} ${dmSans.variable} ${jetbrainsMono.variable}`;
+
   return (
-    <html lang="en" className="h-full bg-black">
+    <html lang="en" className={`h-full ${fontVars}`}>
       <head>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
-      <body className={`${inter.className} h-full bg-black text-white`}>
+      <body className="font-sans min-h-full bg-dw-bg text-dw-cream">
         <AuthProvider>
-          <div className="min-h-screen bg-black">
-            <Navbar />
-            <main className="relative">
-              {children}
-            </main>
-            <Footer />
-            <Analytics />
-          </div>
+          {children}
+          <Analytics />
         </AuthProvider>
       </body>
     </html>

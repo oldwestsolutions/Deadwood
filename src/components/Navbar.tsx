@@ -45,8 +45,8 @@ export default function Navbar() {
             <Link href="#platform" className="text-neutral-400 hover:text-white transition-colors duration-200 text-sm font-medium">
               Platform
             </Link>
-            <Link href="#use-cases" className="text-neutral-400 hover:text-white transition-colors duration-200 text-sm font-medium">
-              Use Cases
+            <Link href="#gitlab-ci" className="text-neutral-400 hover:text-white transition-colors duration-200 text-sm font-medium">
+              GitLab CI
             </Link>
             <Link href="#technology" className="text-neutral-400 hover:text-white transition-colors duration-200 text-sm font-medium">
               Technology
