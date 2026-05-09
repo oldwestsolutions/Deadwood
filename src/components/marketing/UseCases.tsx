@@ -14,7 +14,7 @@ const fadeUp = {
   }),
 };
 
-/** 8-bit ocean: horizon ships, anchors, droplets, seabed treasure—DigitalOcean-flavored hosting metaphor */
+/** 8-bit ocean: ships, fish, anchor chains to seabed, treasure — hosting metaphor */
 function ModelsAsCodeOceanIllustration() {
   const uid = useId().replace(/:/g, '');
   const skyId = `ocean-sky-${uid}`;
@@ -67,21 +67,42 @@ function ModelsAsCodeOceanIllustration() {
     }
   }
 
-  const dropletA = [
-    [2, 0],
-    [1, 1],
-    [2, 1],
-    [3, 1],
-    [1, 2],
-    [2, 2],
-    [3, 2],
-    [2, 3],
-    [2, 4],
-  ];
-
   const seaTop = oy + rowsSky * cell;
   const seaBot = oy + (rowsSky + rowsSea) * cell;
   const u = 5;
+
+  const fp = 4;
+  const fishS: [number, number, string][] = [
+    [5, 1, '#8ecae6'],
+    [6, 1, '#b8e0f0'],
+    [4, 2, '#6fb3d2'],
+    [5, 2, '#8ecae6'],
+    [6, 2, '#219ebc'],
+    [7, 2, '#023047'],
+    [8, 2, '#6fb3d2'],
+    [5, 3, '#8ecae6'],
+    [6, 3, '#8ecae6'],
+    [7, 3, '#5a90b0'],
+    [6, 4, '#6fb3d2'],
+  ];
+  const fishM: [number, number, string][] = [
+    [6, 1, '#7eb8d6'],
+    [7, 1, '#a8d4ea'],
+    [8, 1, '#7eb8d6'],
+    [5, 2, '#5a9eba'],
+    [6, 2, '#7eb8d6'],
+    [7, 2, '#1a7a9e'],
+    [8, 2, '#7eb8d6'],
+    [9, 2, '#5a9eba'],
+    [10, 2, '#7eb8d6'],
+    [6, 3, '#7eb8d6'],
+    [7, 3, '#023047'],
+    [8, 3, '#7eb8d6'],
+    [9, 3, '#5a9eba'],
+    [7, 4, '#7eb8d6'],
+    [8, 4, '#5a9eba'],
+    [9, 4, '#7eb8d6'],
+  ];
 
   const anchorPixels: [number, number, string][] = [
     [2, 0, '#c5d4e8'],
@@ -191,10 +212,46 @@ function ModelsAsCodeOceanIllustration() {
     return links;
   };
 
+  const sandTop = seaBot - cell * 2;
+  const anchorDropY = sandTop - 6 * u - 6;
   const anchorLeftX = ox + 14;
   const anchorRightX = ox + cols * cell - 40;
-  const anchorDropY = seaTop + cell * 8;
   const chainTop = oy + rowsSky * cell - 10;
+  const chainBottom = anchorDropY + 10;
+
+  const swimSpan = cols * cell + fp * 28;
+
+  function FishLane({
+    baseY,
+    pixels,
+    dur,
+    delay = 0,
+  }: {
+    baseY: number;
+    pixels: [number, number, string][];
+    dur: number;
+    delay?: number;
+  }) {
+    return (
+      <g transform={`translate(${ox}, ${baseY})`}>
+        <motion.g
+          animate={{ x: [-fp * 16, swimSpan, -fp * 16] }}
+          transition={{ duration: dur, repeat: Infinity, ease: 'linear', delay }}
+        >
+          {pixels.map(([dx, dy, fill], i) => (
+            <rect
+              key={`${baseY}-${i}`}
+              x={dx * fp}
+              y={dy * fp}
+              width={fp - 1}
+              height={fp - 1}
+              fill={fill}
+            />
+          ))}
+        </motion.g>
+      </g>
+    );
+  }
 
   return (
     <svg
@@ -290,24 +347,20 @@ function ModelsAsCodeOceanIllustration() {
         ))}
       </g>
 
-      {/* Region droplets (compute islands) */}
-      <g transform={`translate(${ox + cell * 6}, ${seaTop + cell * 5})`}>
-        {dropletA.map(([dx, dy], i) => (
-          <rect key={`d1-${i}`} x={dx * cell} y={dy * cell} width={cell - 1} height={cell - 1} fill="#68d4ff" opacity={0.85} />
-        ))}
-      </g>
-      <g transform={`translate(${ox + cols * cell - cell * 11}, ${seaTop + cell * 8})`}>
-        {dropletA.map(([dx, dy], i) => (
-          <rect key={`d2-${i}`} x={dx * cell} y={dy * cell} width={cell - 1} height={cell - 1} fill="#4ae3c6" opacity={0.8} />
-        ))}
+      {/* 8-bit fish */}
+      <g opacity={0.88}>
+        <FishLane baseY={seaTop + cell * 5} pixels={fishS} dur={24} />
+        <FishLane baseY={seaTop + cell * 9} pixels={fishM} dur={32} delay={3} />
+        <FishLane baseY={seaTop + cell * 13} pixels={fishS} dur={28} delay={9} />
+        <FishLane baseY={sandTop - cell * 5} pixels={fishM} dur={36} delay={5} />
       </g>
 
       {/* Anchor chains — manifests / commits */}
       <g opacity={0.65}>
-        {chainLink(anchorLeftX + 2 * u + Math.floor(u / 2), chainTop, anchorDropY).map((p, i) => (
+        {chainLink(anchorLeftX + 2 * u + Math.floor(u / 2), chainTop, chainBottom).map((p, i) => (
           <rect key={`cl-${i}`} x={p.x} y={p.y} width={5} height={5} rx={1} fill="#8fa8bf" />
         ))}
-        {chainLink(anchorRightX + 2 * u + Math.floor(u / 2), chainTop, anchorDropY + cell).map((p, i) => (
+        {chainLink(anchorRightX + 2 * u + Math.floor(u / 2), chainTop, chainBottom).map((p, i) => (
           <rect key={`cr-${i}`} x={p.x} y={p.y} width={5} height={5} rx={1} fill="#8fa8bf" />
         ))}
       </g>
@@ -318,7 +371,7 @@ function ModelsAsCodeOceanIllustration() {
           <rect key={`al-${i}`} x={dx * u} y={dy * u} width={u - 1} height={u - 1} fill={fill} />
         ))}
       </g>
-      <g transform={`translate(${anchorRightX}, ${anchorDropY + cell})`}>
+      <g transform={`translate(${anchorRightX}, ${anchorDropY})`}>
         {anchorPixels.map(([dx, dy, fill], i) => (
           <rect key={`ar-${i}`} x={dx * u} y={dy * u} width={u - 1} height={u - 1} fill={fill} />
         ))}
@@ -333,38 +386,48 @@ function ModelsAsCodeOceanIllustration() {
         fill="#1a2f24"
         opacity={0.85}
       />
-      <g
-        transform={`translate(${ox + (cols * cell) / 2 - 28}, ${seaBot - u * 11})`}
-        opacity={0.98}
-      >
+      <g transform={`translate(${ox + (cols * cell) / 2 - 28}, ${sandTop - u * 14 - 4})`} opacity={0.98}>
         {treasurePixels.map(([dx, dy, fill], i) => (
           <rect key={`t-${i}`} x={dx * u} y={dy * u} width={u - 1} height={u - 1} fill={fill} />
         ))}
-        <text x={0} y={-8} fill="#C9A96E" fontSize={9} fontFamily="ui-monospace, monospace" letterSpacing="0.12em">
+        <motion.text
+          x={0}
+          y={-8}
+          fill="#C9A96E"
+          fontSize={9}
+          fontFamily="ui-monospace, monospace"
+          letterSpacing="0.12em"
+          animate={{ opacity: [0.72, 1, 0.72] }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+        >
           MARKET
-        </text>
+        </motion.text>
       </g>
 
-      <text
+      <motion.text
         x={ox}
         y={height - 28}
         fill="#7A7570"
         fontSize={9}
         fontFamily="ui-monospace, monospace"
         letterSpacing="0.03em"
+        animate={{ opacity: [0.65, 0.95, 0.65] }}
+        transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
       >
         anchors → manifests, commits, eval
-      </text>
-      <text
+      </motion.text>
+      <motion.text
         x={ox}
         y={height - 12}
         fill="#7A7570"
         fontSize={9}
         fontFamily="ui-monospace, monospace"
         letterSpacing="0.03em"
+        animate={{ opacity: [0.65, 0.95, 0.65] }}
+        transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay: 0.9 }}
       >
         treasure → publish &amp; earn (marketplace payouts)
-      </text>
+      </motion.text>
     </svg>
   );
 }
@@ -458,10 +521,14 @@ export function UseCases() {
           >
             <div className="rounded-[22px] border border-dw-tan/12 bg-[#070f18]/95 px-4 py-4 backdrop-blur-xl sm:px-5 sm:py-5">
               <div className="mb-3 flex items-center gap-2 border-b border-white/[0.06] pb-3">
-                <span className="h-2 w-2 rounded-full bg-[#68d4ff]/90" />
-                <span className="text-[10px] uppercase tracking-wider text-dw-muted sm:text-[11px]">
+                <span className="h-2 w-2 rounded-full bg-dw-tan/75" />
+                <motion.span
+                  className="text-[10px] uppercase tracking-wider text-dw-muted sm:text-[11px]"
+                  animate={{ opacity: [0.78, 1, 0.78] }}
+                  transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+                >
                   Ocean context · 8-bit chart
-                </span>
+                </motion.span>
               </div>
               <div className="relative overflow-hidden rounded-[14px] border border-[#1e4d6e]/40 bg-[#081820]">
                 <ModelsAsCodeOceanIllustration />
