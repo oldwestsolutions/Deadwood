@@ -13,13 +13,16 @@
 }
 
 @layer base {
-  body {
-    @apply bg-dw-bg text-dw-cream antialiased;
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  }
-
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply overflow-x-hidden bg-dw-bg text-dw-cream antialiased;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 
   *:focus-visible {

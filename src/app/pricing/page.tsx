@@ -1,3 +1,4 @@
+import { ChipOptimization } from '@/components/marketing/ChipOptimization';
 import { LandingFooter } from '@/components/marketing/LandingFooter';
 import { NavBar } from '@/components/marketing/NavBar';
 import { Pricing } from '@/components/marketing/Pricing';
@@ -13,6 +14,7 @@ export default function PricingPage() {
     <div className="min-h-screen bg-dw-bg">
       <NavBar />
       <Pricing />
+      <ChipOptimization />
       <LandingFooter />
     </div>
   );

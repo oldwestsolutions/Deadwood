@@ -10,6 +10,7 @@ import {
   type FaqAnswer,
 } from '@/content/pricingMcpContent';
 import { PricingTreasuryOcean } from '@/components/marketing/PricingTreasuryOcean';
+import { AccountSignupPromo } from '@/components/marketing/AccountSignupPromo';
 
 function FaqAnswerBody({ a }: { a: FaqAnswer }) {
   const blocks = Array.isArray(a) ? a : [a];
@@ -79,6 +80,8 @@ Total: $99 + $25 + $150 + $40 = $314`}</pre>
               <p className="mt-3 font-sans text-sm text-dw-tan">Transparent. No surprises.</p>
             </div>
           </div>
+
+          <AccountSignupPromo className="mt-10" />
         </div>
 
         {/* FAQ */}

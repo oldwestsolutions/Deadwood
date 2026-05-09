@@ -29,6 +29,12 @@ export const metadata: Metadata = {
     'Compute infrastructure for Monte Carlo simulations, AI training, algorithmic trading, and consequential learning. Deploy Python jobs billed by the cycle.',
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
+
 export default function RootLayout({
   children,
 }: {

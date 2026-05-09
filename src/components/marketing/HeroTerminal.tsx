@@ -3,7 +3,8 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
-const PX = 5;
+/** Larger pixels = bigger 8-bit illustration on all viewports */
+const PX = 6;
 
 /** Shift boat down so hull bottom (was grid row -16) sits on the horizon / waterline. */
 const BOAT_GRID_Y_OFFSET = 16;
@@ -105,9 +106,9 @@ function buildBoatPixels(): [number, number, string][] {
 const boatPixels = buildBoatPixels();
 
 export function HeroTerminal() {
-  const vbW = 400;
-  const vbH = 288;
-  const horizon = 152;
+  const vbW = 480;
+  const vbH = 346;
+  const horizon = 182;
   const seaRows = Math.floor((vbH - horizon) / PX);
   const seaCols = Math.ceil(vbW / PX) + 2;
 
@@ -122,9 +123,9 @@ export function HeroTerminal() {
 
   const skyScale = horizon / 96;
   const clouds: [number, number][] = [
-    [72, Math.round(28 * skyScale)],
-    [320, Math.round(36 * skyScale)],
-    [210, Math.round(52 * skyScale)],
+    [86, Math.round(28 * skyScale)],
+    [384, Math.round(36 * skyScale)],
+    [252, Math.round(52 * skyScale)],
   ];
 
   const seaPixelHeight = seaRows * PX;
@@ -132,17 +133,19 @@ export function HeroTerminal() {
 
   return (
     <GlassChrome>
-      <div className="flex items-center gap-2 border-b border-white/[0.08] px-5 py-3">
-        <span className="h-3 w-3 rounded-full bg-[#6a5346]" />
-        <span className="h-3 w-3 rounded-full bg-dw-tan/50" />
-        <span className="h-3 w-3 rounded-full bg-dw-muted/40" />
-        <span className="ml-3 font-mono text-[11px] text-dw-muted">chart · crossing.py</span>
+      <div className="flex items-center gap-2 border-b border-white/[0.08] px-4 py-2.5 sm:px-5 sm:py-3">
+        <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#6a5346] sm:h-3 sm:w-3" />
+        <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-dw-tan/50 sm:h-3 sm:w-3" />
+        <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-dw-muted/40 sm:h-3 sm:w-3" />
+        <span className="ml-2 min-w-0 truncate font-mono text-[10px] text-dw-muted sm:ml-3 sm:text-[12px]">
+          chart · crossing.py
+        </span>
       </div>
 
-      <div className="p-4 sm:p-5">
+      <div className="p-3 sm:p-5">
         <svg
           viewBox={`0 0 ${vbW} ${vbH}`}
-          className="h-auto w-full overflow-visible rounded-[14px] border border-[#1e4d6e]/35 bg-[#0a1628]"
+          className="mx-auto h-auto w-full min-h-[clamp(200px,52vw,280px)] max-w-[min(100%,540px)] overflow-visible rounded-[14px] border border-[#1e4d6e]/35 bg-[#0a1628] sm:min-h-[260px] sm:max-w-none lg:min-h-[300px]"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden
         >
@@ -193,7 +196,7 @@ export function HeroTerminal() {
           ))}
 
           <motion.circle
-            cx={332}
+            cx={398}
             cy={Math.round(44 * skyScale)}
             r={10}
             fill="#f4d06f"
@@ -257,11 +260,11 @@ export function HeroTerminal() {
           ))}
 
           <motion.g
-            animate={{ x: [-12, 12, -12] }}
+            animate={{ x: [-14, 14, -14] }}
             transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           >
             <motion.g
-              animate={{ x: [38, 248, 38] }}
+              animate={{ x: [46, 298, 46] }}
               transition={{ duration: 36, repeat: Infinity, ease: 'easeInOut' }}
             >
               <motion.g
@@ -291,6 +294,8 @@ export function HeroTerminal() {
 
 function GlassChrome({ children }: { children: ReactNode }) {
   return (
-    <div className="rounded-[26px] glass-warm shadow-dw-lift ring-1 ring-white/[0.05]">{children}</div>
+    <div className="rounded-[22px] glass-warm shadow-dw-lift ring-1 ring-white/[0.05] sm:rounded-[26px]">
+      {children}
+    </div>
   );
 }

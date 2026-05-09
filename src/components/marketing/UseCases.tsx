@@ -2,7 +2,6 @@
 
 import { useId } from 'react';
 import { motion } from 'framer-motion';
-import { CompareAtGlanceCompact } from '@/components/marketing/CompareAtGlanceCompact';
 import { MotionSection } from '@/components/marketing/MotionSection';
 
 const fadeUp = {
@@ -545,17 +544,6 @@ export function UseCases() {
             </p>
           </motion.div>
         </div>
-
-        {/* Tier comparison (compact) */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55 }}
-          className="mx-auto mt-24 max-w-5xl"
-        >
-          <CompareAtGlanceCompact titleTag="h3" />
-        </motion.div>
       </div>
     </MotionSection>
   );

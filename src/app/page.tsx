@@ -12,9 +12,9 @@ export default function Home() {
       <NavBar />
       <Hero />
       <UseCases />
-      <ChipOptimization />
       <ConsequentialLearning />
       <Pricing />
+      <ChipOptimization />
       <LandingFooter />
     </div>
   );
