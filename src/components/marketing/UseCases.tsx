@@ -1,11 +1,13 @@
 'use client';
 
+import { useId } from 'react';
 import { motion } from 'framer-motion';
 import {
   BeakerIcon,
   CodeBracketSquareIcon,
   RocketLaunchIcon,
 } from '@heroicons/react/24/outline';
+import { CompareAtGlanceCompact } from '@/components/marketing/CompareAtGlanceCompact';
 import { MotionSection } from '@/components/marketing/MotionSection';
 
 const fadeUp = {
@@ -16,6 +18,361 @@ const fadeUp = {
     transition: { delay: 0.06 * i, duration: 0.55, ease: [0.22, 1, 0.36, 1] },
   }),
 };
+
+/** 8-bit ocean: horizon ships, anchors, droplets, seabed treasure—DigitalOcean-flavored hosting metaphor */
+function ModelsAsCodeOceanIllustration() {
+  const uid = useId().replace(/:/g, '');
+  const skyId = `ocean-sky-${uid}`;
+  const deepId = `ocean-deep-${uid}`;
+
+  const cell = 10;
+  const cols = 26;
+  const rowsSky = 8;
+  const rowsSea = 22;
+  const ox = 14;
+  const oy = 12;
+  const width = ox * 2 + cols * cell;
+  const height = oy * 2 + (rowsSky + rowsSea) * cell + 52;
+
+  const skyTiles: { x: number; y: number; fill: string }[] = [];
+  for (let r = 0; r < rowsSky; r++) {
+    for (let c = 0; c < cols; c++) {
+      const band = r + ((c + r) % 3);
+      const fill =
+        band < 3 ? '#3d5a80' : band < 5 ? '#4f6f91' : band < 7 ? '#5c7aa3' : '#6b88b5';
+      skyTiles.push({ x: ox + c * cell, y: oy + r * cell, fill });
+    }
+  }
+
+  const seaTiles: { x: number; y: number; fill: string }[] = [];
+  for (let r = 0; r < rowsSea; r++) {
+    for (let c = 0; c < cols; c++) {
+      const wave = Math.floor((c * 3 + r * 5) % 7);
+      const depth = r / rowsSea;
+      const base =
+        depth < 0.25
+          ? wave < 3
+            ? '#2d6a8f'
+            : '#255f82'
+          : depth < 0.55
+            ? wave < 4
+              ? '#1e4d6e'
+              : '#1a4360'
+            : wave < 3
+              ? '#143d52'
+              : '#0f3448';
+      seaTiles.push({ x: ox + c * cell, y: oy + (rowsSky + r) * cell, fill: base });
+    }
+  }
+
+  const foam: { x: number; y: number }[] = [];
+  for (let c = 0; c < cols; c++) {
+    if ((c + rowsSky) % 4 === 0 || (c + rowsSky) % 7 === 2) {
+      foam.push({ x: ox + c * cell, y: oy + rowsSky * cell - 4 });
+    }
+  }
+
+  const dropletA = [
+    [2, 0],
+    [1, 1],
+    [2, 1],
+    [3, 1],
+    [1, 2],
+    [2, 2],
+    [3, 2],
+    [2, 3],
+    [2, 4],
+  ];
+
+  const seaTop = oy + rowsSky * cell;
+  const seaBot = oy + (rowsSky + rowsSea) * cell;
+  const u = 5;
+
+  const anchorPixels: [number, number, string][] = [
+    [2, 0, '#c5d4e8'],
+    [1, 1, '#9aadbf'],
+    [2, 1, '#b8c5d6'],
+    [3, 1, '#9aadbf'],
+    [2, 2, '#6e7d90'],
+    [2, 3, '#6e7d90'],
+    [0, 4, '#5c6778'],
+    [4, 4, '#5c6778'],
+    [1, 5, '#5c6778'],
+    [2, 5, '#7a8b9e'],
+    [3, 5, '#5c6778'],
+  ];
+
+  const treasurePixels: [number, number, string][] = [
+    [3, 0, '#e8c547'],
+    [4, 0, '#f4d03f'],
+    [5, 0, '#d4af37'],
+    [2, 1, '#d4af37'],
+    [3, 1, '#f4d03f'],
+    [4, 1, '#c9a227'],
+    [5, 1, '#f4d03f'],
+    [6, 1, '#d4af37'],
+    [1, 2, '#5c3d2e'],
+    [2, 2, '#6b4423'],
+    [3, 2, '#d4af37'],
+    [4, 2, '#f4d03f'],
+    [5, 2, '#d4af37'],
+    [6, 2, '#6b4423'],
+    [7, 2, '#5c3d2e'],
+    [1, 3, '#5c3d2e'],
+    [2, 3, '#6b4423'],
+    [3, 3, '#6b4423'],
+    [4, 3, '#5c3d2e'],
+    [5, 3, '#6b4423'],
+    [6, 3, '#6b4423'],
+    [7, 3, '#5c3d2e'],
+    [2, 4, '#4a3528'],
+    [3, 4, '#4a3528'],
+    [4, 4, '#d4af37'],
+    [5, 4, '#4a3528'],
+    [6, 4, '#4a3528'],
+    [8, 3, '#f4d03f'],
+    [9, 3, '#e8c547'],
+    [8, 4, '#e8c547'],
+    [9, 4, '#f4d03f'],
+    [10, 4, '#f4d03f'],
+  ];
+
+  const ss = 4;
+  const shipSmall: [number, number, string][] = [
+    [3, 0, '#c5cdd9'],
+    [3, 1, '#9aa5b4'],
+    [2, 2, '#5c4336'],
+    [3, 2, '#6d5243'],
+    [4, 2, '#5c4336'],
+    [1, 3, '#4a3629'],
+    [2, 3, '#5a4335'],
+    [3, 3, '#4a3629'],
+    [4, 3, '#5a4335'],
+    [5, 3, '#4a3629'],
+    [2, 4, '#3d2b22'],
+    [3, 4, '#4a3629'],
+    [4, 4, '#3d2b22'],
+  ];
+  const shipWide: [number, number, string][] = [
+    [6, 0, '#d8dee9'],
+    [6, 1, '#aeb8c6'],
+    [6, 2, '#8d98a8'],
+    [4, 3, '#5c4336'],
+    [5, 3, '#6d5243'],
+    [6, 3, '#5c4336'],
+    [7, 3, '#6d5243'],
+    [8, 3, '#5c4336'],
+    [2, 4, '#4a3629'],
+    [3, 4, '#5a4335'],
+    [4, 4, '#4a3629'],
+    [5, 4, '#5a4335'],
+    [6, 4, '#4a3629'],
+    [7, 4, '#5a4335'],
+    [8, 4, '#4a3629'],
+    [9, 4, '#5a4335'],
+    [10, 4, '#4a3629'],
+    [3, 5, '#3d2b22'],
+    [4, 5, '#4a3629'],
+    [5, 5, '#3d2b22'],
+    [6, 5, '#4a3629'],
+    [7, 5, '#3d2b22'],
+    [8, 5, '#4a3629'],
+    [9, 5, '#3d2b22'],
+  ];
+  const shipTiny: [number, number, string][] = [
+    [2, 0, '#aeb8c6'],
+    [1, 1, '#4a3629'],
+    [2, 1, '#5a4335'],
+    [3, 1, '#4a3629'],
+    [2, 2, '#3d2b22'],
+    [3, 2, '#4a3629'],
+  ];
+
+  const chainLink = (cx: number, y0: number, y1: number) => {
+    const links: { x: number; y: number }[] = [];
+    for (let y = y0; y < y1; y += 7) {
+      links.push({ x: cx - 2, y });
+    }
+    return links;
+  };
+
+  const anchorLeftX = ox + 14;
+  const anchorRightX = ox + cols * cell - 40;
+  const anchorDropY = seaTop + cell * 8;
+  const chainTop = oy + rowsSky * cell - 10;
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className="h-auto w-full text-dw-muted"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id={skyId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#7aa8d8" stopOpacity={0.35} />
+          <stop offset="100%" stopColor="#2d6a8f" stopOpacity={0} />
+        </linearGradient>
+        <linearGradient id={deepId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#1e4d6e" stopOpacity={0.15} />
+          <stop offset="100%" stopColor="#081820" stopOpacity={0.55} />
+        </linearGradient>
+      </defs>
+      <rect x={0} y={0} width={width} height={height} rx={12} fill="#0a1628" />
+      <rect x={ox} y={oy} width={cols * cell} height={rowsSky * cell} fill={`url(#${skyId})`} />
+
+      {skyTiles.map((t, i) => (
+        <rect key={`s-${i}`} x={t.x} y={t.y} width={cell - 1} height={cell - 1} fill={t.fill} opacity={0.55} />
+      ))}
+
+      {/* Pixel sun */}
+      <g transform={`translate(${ox + cols * cell - 52}, ${oy + 16})`}>
+        {[
+          [2, 0],
+          [1, 1],
+          [2, 1],
+          [3, 1],
+          [0, 2],
+          [1, 2],
+          [2, 2],
+          [3, 2],
+          [4, 2],
+          [1, 3],
+          [2, 3],
+          [3, 3],
+          [2, 4],
+        ].map(([dx, dy], i) => (
+          <rect key={i} x={dx * 5} y={dy * 5} width={4} height={4} fill="#f4d06f" opacity={0.9} />
+        ))}
+      </g>
+
+      <rect
+        x={ox}
+        y={oy + rowsSky * cell}
+        width={cols * cell}
+        height={rowsSea * cell}
+        fill={`url(#${deepId})`}
+      />
+      {seaTiles.map((t, i) => (
+        <rect key={`w-${i}`} x={t.x} y={t.y} width={cell - 1} height={cell - 1} fill={t.fill} />
+      ))}
+
+      {foam.map((f, i) => (
+        <rect key={`f-${i}`} x={f.x} y={f.y} width={cell - 2} height={3} fill="#c8e6ff" opacity={0.35} rx={0.5} />
+      ))}
+
+      {/* Ships — pixel silhouettes on the horizon */}
+      <g opacity={0.92}>
+        <g transform={`translate(${ox + 38}, ${seaTop - ss * 5})`}>
+          {shipTiny.map(([dx, dy, fill], i) => (
+            <rect key={`st-${i}`} x={dx * ss} y={dy * ss} width={ss - 1} height={ss - 1} fill={fill} />
+          ))}
+        </g>
+        <g transform={`translate(${ox + 92}, ${seaTop - ss * 6})`}>
+          {shipSmall.map(([dx, dy, fill], i) => (
+            <rect key={`ss-${i}`} x={dx * ss} y={dy * ss} width={ss - 1} height={ss - 1} fill={fill} />
+          ))}
+        </g>
+        <g transform={`translate(${ox + cols * cell - 58 - 11 * ss}, ${seaTop - ss * 7})`}>
+          {shipWide.map(([dx, dy, fill], i) => (
+            <rect key={`sw-${i}`} x={dx * ss} y={dy * ss} width={ss - 1} height={ss - 1} fill={fill} />
+          ))}
+        </g>
+      </g>
+
+      {/* “Cable” path — data lane */}
+      <g opacity={0.45}>
+        {Array.from({ length: 18 }, (_, i) => (
+          <rect
+            key={`c-${i}`}
+            x={ox + 8 + i * 14}
+            y={oy + rowsSky * cell + 40 + ((i * 3) % 5) * cell}
+            width={6}
+            height={6}
+            fill="#C9A96E"
+          />
+        ))}
+      </g>
+
+      {/* Region droplets (compute islands) */}
+      <g transform={`translate(${ox + cell * 6}, ${seaTop + cell * 5})`}>
+        {dropletA.map(([dx, dy], i) => (
+          <rect key={`d1-${i}`} x={dx * cell} y={dy * cell} width={cell - 1} height={cell - 1} fill="#68d4ff" opacity={0.85} />
+        ))}
+      </g>
+      <g transform={`translate(${ox + cols * cell - cell * 11}, ${seaTop + cell * 8})`}>
+        {dropletA.map(([dx, dy], i) => (
+          <rect key={`d2-${i}`} x={dx * cell} y={dy * cell} width={cell - 1} height={cell - 1} fill="#4ae3c6" opacity={0.8} />
+        ))}
+      </g>
+
+      {/* Anchor chains — manifests / commits */}
+      <g opacity={0.65}>
+        {chainLink(anchorLeftX + 2 * u + Math.floor(u / 2), chainTop, anchorDropY).map((p, i) => (
+          <rect key={`cl-${i}`} x={p.x} y={p.y} width={5} height={5} rx={1} fill="#8fa8bf" />
+        ))}
+        {chainLink(anchorRightX + 2 * u + Math.floor(u / 2), chainTop, anchorDropY + cell).map((p, i) => (
+          <rect key={`cr-${i}`} x={p.x} y={p.y} width={5} height={5} rx={1} fill="#8fa8bf" />
+        ))}
+      </g>
+
+      {/* Anchors */}
+      <g transform={`translate(${anchorLeftX}, ${anchorDropY})`}>
+        {anchorPixels.map(([dx, dy, fill], i) => (
+          <rect key={`al-${i}`} x={dx * u} y={dy * u} width={u - 1} height={u - 1} fill={fill} />
+        ))}
+      </g>
+      <g transform={`translate(${anchorRightX}, ${anchorDropY + cell})`}>
+        {anchorPixels.map(([dx, dy, fill], i) => (
+          <rect key={`ar-${i}`} x={dx * u} y={dy * u} width={u - 1} height={u - 1} fill={fill} />
+        ))}
+      </g>
+
+      {/* Seabed sand + treasure — marketplace / sell */}
+      <rect
+        x={ox}
+        y={seaBot - cell * 2}
+        width={cols * cell}
+        height={cell * 2}
+        fill="#1a2f24"
+        opacity={0.85}
+      />
+      <g
+        transform={`translate(${ox + (cols * cell) / 2 - 28}, ${seaBot - u * 11})`}
+        opacity={0.98}
+      >
+        {treasurePixels.map(([dx, dy, fill], i) => (
+          <rect key={`t-${i}`} x={dx * u} y={dy * u} width={u - 1} height={u - 1} fill={fill} />
+        ))}
+        <text x={0} y={-8} fill="#C9A96E" fontSize={9} fontFamily="ui-monospace, monospace" letterSpacing="0.12em">
+          MARKET
+        </text>
+      </g>
+
+      <text
+        x={ox}
+        y={height - 28}
+        fill="#7A7570"
+        fontSize={9}
+        fontFamily="ui-monospace, monospace"
+        letterSpacing="0.03em"
+      >
+        anchors → manifests, commits, eval
+      </text>
+      <text
+        x={ox}
+        y={height - 12}
+        fill="#7A7570"
+        fontSize={9}
+        fontFamily="ui-monospace, monospace"
+        letterSpacing="0.03em"
+      >
+        treasure → publish &amp; earn (marketplace payouts)
+      </text>
+    </svg>
+  );
+}
 
 const flowSteps = [
   {
@@ -122,143 +479,25 @@ export function UseCases() {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="relative overflow-hidden rounded-[24px] border border-white/[0.08] bg-gradient-to-br from-dw-surface/55 via-dw-bg/95 to-dw-bg p-1 shadow-dw-lift"
           >
-            <div className="rounded-[22px] border border-dw-tan/12 bg-[#0c0c0a]/92 px-4 py-4 font-mono text-[10px] leading-relaxed backdrop-blur-xl sm:px-5 sm:py-5 sm:text-[11px]">
+            <div className="rounded-[22px] border border-dw-tan/12 bg-[#070f18]/95 px-4 py-4 backdrop-blur-xl sm:px-5 sm:py-5">
               <div className="mb-3 flex items-center gap-2 border-b border-white/[0.06] pb-3">
-                <span className="h-2 w-2 rounded-full bg-dw-tan/85" />
+                <span className="h-2 w-2 rounded-full bg-[#68d4ff]/90" />
                 <span className="text-[10px] uppercase tracking-wider text-dw-muted sm:text-[11px]">
-                  .deadwood.yml
+                  Ocean context · 8-bit chart
                 </span>
               </div>
-              <pre className="max-h-[min(82vh,620px)] overflow-x-auto overflow-y-auto whitespace-pre bg-[radial-gradient(ellipse_120%_80%_at_50%_100%,rgba(16,185,129,0.06)_0%,transparent_55%)] px-1 py-0.5 text-left font-mono tracking-[0.04em] [text-shadow:0_0_24px_rgba(52,211,153,0.12)] [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-emerald-500/25">
-                <code className="text-dw-muted">
-                  <span className="text-emerald-500/55"># ciphertext manifest — unlock at deploy{'\n'}</span>
-                  <span className="text-dw-tan">version</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">1</span>
-                  {'\n'}
-                  <span className="text-dw-tan">models</span>
-                  <span className="text-dw-muted">:{'\n'}</span>
-                  {'  '}
-                  <span className="text-dw-cream">trading_taste</span>
-                  <span className="text-dw-muted">:{'\n'}</span>
-                  {'    '}
-                  <span className="text-dw-tan">base</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">&quot;llama-7b&quot;</span>
-                  {'\n'}
-                  {'    '}
-                  <span className="text-dw-tan">training</span>
-                  <span className="text-dw-muted">:{'\n'}</span>
-                  {'      '}
-                  <span className="text-dw-tan">data</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">&quot;trades_2024.csv&quot;</span>
-                  {'\n'}
-                  {'      '}
-                  <span className="text-dw-tan">method</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">&quot;preference_learning&quot;</span>
-                  {'\n'}
-                  {'      '}
-                  <span className="text-dw-tan">epochs</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">3</span>
-                  {'\n'}
-                  {'    '}
-                  <span className="text-dw-tan">production</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">false</span>
-                  {'\n'}
-                  {'  '}
-                  <span className="text-dw-cream">trading_taste_v2</span>
-                  <span className="text-dw-muted">:{'\n'}</span>
-                  {'    '}
-                  <span className="text-dw-tan">base</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">&quot;llama-7b&quot;</span>
-                  {'\n'}
-                  {'    '}
-                  <span className="text-dw-tan">training</span>
-                  <span className="text-dw-muted">:{'\n'}</span>
-                  {'      '}
-                  <span className="text-dw-tan">data</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">&quot;trades_2024_q1.csv&quot;</span>
-                  {'\n'}
-                  {'      '}
-                  <span className="text-dw-tan">method</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">&quot;preference_learning&quot;</span>
-                  {'\n'}
-                  {'      '}
-                  <span className="text-dw-tan">epochs</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">5</span>
-                  {'\n'}
-                  {'    '}
-                  <span className="text-dw-tan">production</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">true</span>
-                  <span className="text-dw-muted"> </span>
-                  <span className="text-dw-muted"># live{'\n'}</span>
-                  {'  '}
-                  <span className="text-dw-cream">gaming_taste</span>
-                  <span className="text-dw-muted">:{'\n'}</span>
-                  {'    '}
-                  <span className="text-dw-tan">base</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">&quot;phi-3&quot;</span>
-                  {'\n'}
-                  {'    '}
-                  <span className="text-dw-tan">training</span>
-                  <span className="text-dw-muted">:{'\n'}</span>
-                  {'      '}
-                  <span className="text-dw-tan">data</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">&quot;game_feedback.jsonl&quot;</span>
-                  {'\n'}
-                  {'      '}
-                  <span className="text-dw-tan">method</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">&quot;contrastive_learning&quot;</span>
-                  {'\n'}
-                  {'      '}
-                  <span className="text-dw-tan">epochs</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">2</span>
-                  {'\n'}
-                  {'    '}
-                  <span className="text-dw-tan">production</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">true</span>
-                  {'\n'}
-                  <span className="text-dw-tan">vault</span>
-                  <span className="text-dw-muted">:{'\n'}</span>
-                  {'  '}
-                  <span className="text-dw-tan">ciphertext</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-emerald-400/90">&quot;ENC:v3:a8f21cb904…e771&quot;</span>
-                  {'\n'}
-                  {'  '}
-                  <span className="text-dw-tan">redundancy</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">3</span>
-                  {'\n'}
-                  <span className="text-dw-tan">audit</span>
-                  <span className="text-dw-muted">:{'\n'}</span>
-                  {'  '}
-                  <span className="text-dw-tan">attestation</span>
-                  <span className="text-dw-muted">: </span>
-                  <span className="text-emerald-400/90">&quot;SIG:ed25519:9Qm…kL2f&quot;</span>
-                </code>
-              </pre>
+              <div className="relative overflow-hidden rounded-[14px] border border-[#1e4d6e]/40 bg-[#081820]">
+                <ModelsAsCodeOceanIllustration />
+              </div>
             </div>
             <p className="border-t border-white/[0.06] bg-dw-surface/25 px-4 py-3.5 font-sans text-sm leading-relaxed text-dw-muted sm:px-5">
-              Commit this file. Training runs for{' '}
-              <span className="text-dw-cream">trading_taste_v2</span>, and weights are stored across redundant
-              network storage. When you set{' '}
-              <span className="font-mono text-dw-highlight">production: true</span>, your app swaps to the new
-              model in one step—with a permanent audit trail. Live.
+              Same mental model as sea-scale hosting (think{' '}
+              <span className="text-dw-cream">DigitalOcean</span>-style regions):{' '}
+              <span className="text-dw-cream">anchors</span> stand for grounding—manifests, commits, and evaluation tied
+              to real artifacts. The <span className="text-dw-cream">treasure</span> on the floor is the upside: publish
+              models to the marketplace and capture payouts when others ship them. Currents still route traffic;{' '}
+              <span className="font-mono text-dw-highlight">.deadwood.yml</span> stays your chart, and the ledger logs every
+              promotion.
             </p>
           </motion.div>
         </div>
@@ -293,80 +532,16 @@ export function UseCases() {
           </div>
         </div>
 
-        {/* Workflow example */}
+        {/* Tier comparison (compact) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="mx-auto mt-24 max-w-4xl"
+          className="mx-auto mt-24 max-w-5xl"
         >
-          <h3 className="font-display text-2xl text-dw-cream">From Code to Production in Minutes</h3>
-          <pre className="mt-8 overflow-x-auto rounded-[20px] border border-white/[0.08] bg-dw-bg/70 p-6 font-mono text-[11px] leading-relaxed text-dw-muted backdrop-blur-[24px] sm:text-xs">
-            {`Step 1: You train locally
-├─ Run: deadwood train --config .deadwood.yml
-├─ Local model trains on your data
-└─ You validate it works
-
-Step 2: You commit
-├─ git add .deadwood.yml
-├─ git commit -m "feat: trading_taste_v2 model, 98.2% accuracy"
-└─ git push
-
-Step 3: floppydisk.cc detects change
-├─ Sees new model definition
-├─ Trains trading_taste_v2 on remote GPUs (optional)
-├─ Stores final weights on Filecoin
-└─ Model is versioned, permanent, immutable
-
-Step 4: You deploy
-├─ Edit .deadwood.yml: set trading_taste_v2 to production: true
-├─ git commit -m "deploy: trading_taste_v2 to production"
-├─ git push
-└─ Your app immediately uses new model (no downtime)
-
-Step 5: Avalanche records it
-├─ Transaction: "user_xyz swapped to trading_taste_v2"
-├─ Timestamp: [timestamp]
-├─ Model hash: [hash]
-└─ Now immutably recorded
-
-Result: New model in production. Perfect auditability. No manual deployment. No infrastructure thinking.`}
-          </pre>
+          <CompareAtGlanceCompact titleTag="h3" />
         </motion.div>
-
-        {/* Callouts */}
-        <div className="mx-auto mt-16 grid max-w-4xl gap-6 md:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="rounded-[20px] border border-white/[0.08] bg-dw-surface/40 p-6 text-center backdrop-blur-[24px] transition-shadow hover:shadow-[0_12px_40px_rgba(201,169,110,0.06)]"
-          >
-            <h4 className="font-display text-lg text-dw-cream">Optimization</h4>
-            <p className="mt-3 font-sans text-sm leading-relaxed text-dw-muted">
-              Training and inference are expensive when left on defaults. Deadwood routes workloads through
-              hardware-aware paths—parallelism, batching, and precision choices matched to your chips—so each
-              epoch and each serving hour buys more quality per dollar before you ever widen traffic.
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.08 }}
-            className="rounded-[20px] border border-white/[0.08] bg-dw-surface/40 p-6 text-center backdrop-blur-[24px] transition-shadow hover:shadow-[0_12px_40px_rgba(201,169,110,0.06)]"
-          >
-            <h4 className="font-display text-lg text-dw-cream">Evaluation</h4>
-            <p className="mt-3 font-sans text-sm leading-relaxed text-dw-muted">
-              Shipping a model without a consistent scoreboard is flying blind. Tie evaluations to the same
-              commits as your weights—fixed datasets, regression metrics, and side-by-side baselines—so when
-              production flips, you know exactly what improved, what regressed, and who signed off on the
-              tradeoffs.
-            </p>
-          </motion.div>
-        </div>
       </div>
     </MotionSection>
   );

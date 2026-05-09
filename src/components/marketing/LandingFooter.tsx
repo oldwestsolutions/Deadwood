@@ -22,7 +22,7 @@ const columns: FooterColumn[] = [
       { href: '/#chip-optimization', label: 'Chip optimization' },
       { href: '/#layers-intelligence', label: 'Nine layers' },
       { href: '/#pricing', label: 'Pricing' },
-      { href: '/#learning', label: 'Educational AI' },
+      { href: '/#premium', label: 'Premium' },
       { href: '/products', label: 'Products' },
       { href: '/solutions', label: 'Solutions' },
     ],
@@ -143,31 +143,31 @@ export function LandingFooter() {
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
             <div className="max-w-xl">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-dw-tan">
-                Signals from the mesh
+                Create your account
               </p>
               <p className="mt-3 font-display text-2xl leading-snug text-dw-cream sm:text-[1.75rem]">
-                Cycle drops, roadmap sketches, and runner telemetry — distilled for builders.
+                One login for training runs, model versions, and production routing—without wiring billing and access by hand.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-dw-muted">
-                No fluff. Occasional notes when Snowflake pools rotate, chains handshake, or new
-                APIs ship.
+                Sign up to connect repos, issue API keys, and track what shipped—same workspace your team uses from first
+                local train through promotion.
               </p>
             </div>
             <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Link
-                  href="/newsletter"
+                  href="/register"
                   className="inline-flex items-center justify-center rounded-full bg-dw-tan px-8 py-3.5 text-center text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow"
                 >
-                  Subscribe
+                  Create account
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Link
-                  href="/join"
+                  href="/login"
                   className="inline-flex items-center justify-center rounded-full border border-dw-tan/35 px-8 py-3.5 text-center text-sm font-semibold text-dw-cream transition-colors hover:border-dw-highlight hover:bg-white/[0.04]"
                 >
-                  Join waitlist
+                  Sign in
                 </Link>
               </motion.div>
             </div>

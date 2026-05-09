@@ -5,7 +5,7 @@ import { Pricing } from '@/components/marketing/Pricing';
 export const metadata = {
   title: 'Pricing · Deadwood',
   description:
-    'Deadwood ML capabilities for Claude via MCP — Catalyst, Accelerator, and Autonomous tiers.',
+    'Deadwood pricing — Local (free), Premium ($99/mo with Snowflake), and Enterprise (custom) tiers compared.',
 };
 
 export default function PricingPage() {

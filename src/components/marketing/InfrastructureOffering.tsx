@@ -25,6 +25,7 @@ import {
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline';
 import { GradientMesh } from '@/components/marketing/GradientMesh';
+import { CompareAtGlanceCompact } from '@/components/marketing/CompareAtGlanceCompact';
 import { cn } from '@/lib/cn';
 
 const fadeUp = {
@@ -381,78 +382,57 @@ function InfraWhatYouGet() {
   );
 }
 
-function InfraHowItWorks() {
-  const steps = [
-    {
-      Icon: WrenchScrewdriverIcon,
-      title: '1 · Get API access',
-      time: '~5 minutes',
-      body: 'Create a workspace, mint keys, and point your services at Deadwood. No mandatory sales call to try Catalyst.',
-      code: `from deadwood import Client\nclient = Client(api_key="dk_xxx")\n# Ready for train / predict calls`,
-    },
-    {
-      Icon: PlayIcon,
-      title: '2 · First model',
-      time: '5–10 minutes typical',
-      body: 'Collect structured feedback inside your UX. Deadwood schedules training, streams logs, and hands back a versioned checkpoint automatically.',
-      code: `job = client.train(user_id="u1", feedback=data)\njob.wait()\nmodel_id = job.model_id`,
-    },
-    {
-      Icon: BoltIcon,
-      title: '3 · Personalized inference',
-      time: 'Sub-second targets (tier-dependent)',
-      body: 'Your app requests scores or rankings; we hydrate the right checkpoint, run inference, and return calibrated outputs you can sort by.',
-      code: `score = client.predict(item=x, model_id=model_id)\nif score.preference > 0.8:\n    surface(x)`,
-    },
-    {
-      Icon: ArrowPathIcon,
-      title: '4 · Continuous improvement',
-      time: 'Ongoing',
-      body: 'Every labeled interaction folds into the next training window—automatically bounded by governance rules you set.',
-      code: `client.add_feedback(user_id="u1", item=x, signal="up")\n# Nightly / rolling trainers pick this up`,
-    },
-    {
-      Icon: RocketLaunchIcon,
-      title: '5 · Scale out',
-      time: 'No rewrite',
-      body: 'Throughput grows from hundreds to millions of monthly calls without redesigning your integration—the service tier absorbs elasticity.',
-      code: `# Same SDK calls — quotas & SLAs scale with tier`,
-    },
-  ];
+const LOCAL_WORKFLOW_COMPACT = `Step 1: You train locally
+├─ Run: deadwood train --config .deadwood.yml
+├─ Local model trains on your data
+└─ You validate it works
 
+Step 2: You commit
+├─ git add .deadwood.yml
+├─ git commit -m "feat: trading_taste_v2 model, 98.2% accuracy"
+└─ git push
+
+Step 3: floppydisk.cc detects change
+├─ Sees new model definition
+├─ Trains trading_taste_v2 on remote GPUs (optional)
+├─ Stores final weights on Filecoin
+└─ Model is versioned, permanent, immutable
+
+Step 4: You deploy
+├─ Edit .deadwood.yml: set trading_taste_v2 to production: true
+├─ git commit -m "deploy: trading_taste_v2 to production"
+├─ git push
+└─ Your app immediately uses new model (no downtime)
+
+Step 5: Avalanche records it
+├─ Transaction: "user_xyz swapped to trading_taste_v2"
+├─ Timestamp: [timestamp]
+├─ Model hash: [hash]
+└─ Now immutably recorded
+
+Result: New model in production. Perfect auditability. No manual deployment. No infrastructure thinking.`;
+
+function InfraHowItWorks() {
   return (
-    <section className="border-t border-white/[0.06] bg-dw-bg py-section">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-[clamp(2rem,4vw,2.75rem)] text-dw-cream">From integration to scale</h2>
-          <p className="mt-4 font-sans text-base text-dw-muted">
-            A straight-line story your exec team can repeat without reading a runbook.
+    <section id="architecture-compare" className="border-t border-white/[0.06] bg-dw-bg py-section scroll-mt-28">
+      <div className="mx-auto max-w-5xl px-6 lg:px-8">
+        <CompareAtGlanceCompact />
+
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, delay: 0.06 }}
+          className="mt-8"
+        >
+          <h3 className="font-display text-sm text-dw-cream sm:text-base">Local git workflow</h3>
+          <p className="mt-1 font-sans text-[11px] text-dw-muted sm:text-xs">
+            Train locally, commit manifests, let floppydisk.cc pin artifacts, flip production in git, settle promotions on-chain.
           </p>
-        </div>
-        <div className="relative mx-auto mt-16 max-w-3xl space-y-10 border-l border-dw-tan/25 pl-8">
-          {steps.map((s, i) => (
-            <motion.div
-              key={s.title}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="relative"
-            >
-              <span className="absolute -left-[39px] top-2 flex h-5 w-5 items-center justify-center rounded-full border border-dw-tan/40 bg-dw-bg">
-                <span className="h-2 w-2 rounded-full bg-dw-tan" />
-              </span>
-              <s.Icon className="h-8 w-8 text-dw-tan" aria-hidden />
-              <h3 className="mt-3 font-display text-xl text-dw-cream">{s.title}</h3>
-              <p className="mt-1 font-mono text-xs text-dw-highlight">{s.time}</p>
-              <p className="mt-3 font-sans text-sm leading-relaxed text-dw-muted">{s.body}</p>
-              <pre className="mt-4 overflow-x-auto rounded-[16px] border border-white/[0.08] bg-[#0c0c0a]/95 p-4 font-mono text-[11px] leading-relaxed text-dw-muted sm:text-xs">
-                <code>{s.code}</code>
-              </pre>
-            </motion.div>
-          ))}
-        </div>
+          <pre className="mt-2 max-h-[min(50vh,380px)] overflow-auto rounded-xl border border-white/[0.08] bg-[#0c0c0a]/95 p-3 font-mono text-[9px] leading-relaxed text-dw-muted sm:p-3.5 sm:text-[10px]">
+            <code>{LOCAL_WORKFLOW_COMPACT}</code>
+          </pre>
+        </motion.div>
       </div>
     </section>
   );

@@ -42,7 +42,7 @@ export function NavBar() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
-        'fixed inset-x-0 top-0 z-50 border-b border-white/[0.06] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
+        'fixed inset-x-0 top-0 z-50 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
         hidden && '-translate-y-[calc(100%+2rem)] pointer-events-none'
       )}
     >

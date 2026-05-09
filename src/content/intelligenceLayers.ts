@@ -89,7 +89,7 @@ export const LAYER_SUMMARIES: Record<LayerSlug, LayerSummary> = {
     title: 'Optimization & serving',
     subtitle: 'Speed & cost',
     cardDesc:
-      'Batching, caching, quantization, flash attention, efficient servers. Fast and cheap inference.',
+      'Smarter batching and precision so training and inference cost less on your hardware.',
     cardTint:
       'from-orange-950/40 via-dw-tan/20 to-dw-surface/90',
   },
@@ -99,7 +99,7 @@ export const LAYER_SUMMARIES: Record<LayerSlug, LayerSummary> = {
     title: 'Evaluation & verification',
     subtitle: 'Proof it works',
     cardDesc:
-      'BLEU, ROUGE, perplexity, F1, fairness checks, red-team suites. Evidence that gates a promotion.',
+      'Benchmarks tied to your commits—know what improved before you promote.',
     cardTint:
       'from-emerald-950/35 via-dw-tan/14 to-dw-surface/90',
   },
