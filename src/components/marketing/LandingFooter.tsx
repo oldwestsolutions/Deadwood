@@ -64,24 +64,6 @@ const columns: FooterColumn[] = [
     ],
   },
   {
-    title: 'Ecosystem',
-    links: [
-      { href: '/products', label: 'Marketplace' },
-      {
-        href: 'https://general.exchange',
-        label: 'general.exchange',
-        external: true,
-      },
-      {
-        href: 'https://52pickup.cc',
-        label: '52pickup.cc',
-        external: true,
-      },
-      { href: '/demonstrations', label: 'Demonstrations' },
-      { href: '/community', label: 'Community showcase' },
-    ],
-  },
-  {
     title: 'Company',
     links: [
       { href: '/support', label: 'About' },
@@ -149,30 +131,6 @@ export function LandingFooter() {
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-12">
           <motion.div variants={item} className="lg:col-span-3">
             <p className="font-display text-xl tracking-[0.28em] text-[#C9A96E]">DEADWOOD</p>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#7A7570]">
-              Compute infrastructure for the consequential economy — Python as a Service, Numbers as a Service,
-              anchored where it matters.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:flex-col lg:items-start">
-              <Link
-                href="/register"
-                className="inline-flex items-center justify-center rounded-full bg-[#EDE9E0] px-6 py-2.5 text-center text-sm font-bold text-[#0A0A08] shadow-sm transition-opacity hover:opacity-90"
-              >
-                Sign up
-              </Link>
-              <Link
-                href="/snowflake-premium"
-                className="inline-flex items-center justify-center rounded-full border border-[#1A1814] bg-[#0A0A08] px-6 py-2.5 text-center text-sm font-bold text-[#EDE9E0] transition-colors hover:border-dw-tan/40 hover:text-dw-highlight"
-              >
-                Upgrade to Premium
-              </Link>
-              <Link
-                href="/login"
-                className="text-[13px] font-medium text-[#7A7570] underline-offset-4 transition-colors hover:text-dw-highlight hover:underline"
-              >
-                Sign in
-              </Link>
-            </div>
             <div className="mt-8 rounded-2xl border border-[#1A1814] bg-dw-surface/40 px-5 py-4 backdrop-blur-md">
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#7A7570]">Portfolio</p>
               <p className="mt-2 text-sm text-dw-highlight">Old West Solutions · open rails · metered truth</p>
@@ -181,7 +139,7 @@ export function LandingFooter() {
 
           <motion.div
             variants={item}
-            className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:col-span-9 xl:grid-cols-7"
+            className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:col-span-9 xl:grid-cols-6"
           >
             {columns.map((col) => (
               <div key={col.title} className="min-w-0">
