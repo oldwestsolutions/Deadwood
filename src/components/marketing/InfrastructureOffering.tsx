@@ -6,11 +6,13 @@ import { Disclosure } from '@headlessui/react';
 import {
   ArrowPathIcon,
   ArrowRightIcon,
+  BeakerIcon,
   BoltIcon,
   BuildingOffice2Icon,
   ChartBarIcon,
   ChevronDownIcon,
   CloudArrowUpIcon,
+  CodeBracketSquareIcon,
   CpuChipIcon,
   CubeIcon,
   GlobeAltIcon,
@@ -24,8 +26,10 @@ import {
   WalletIcon,
   WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline';
+import { LayerGlyph } from '@/components/layers/layerIcons';
 import { GradientMesh } from '@/components/marketing/GradientMesh';
 import { CompareAtGlanceCompact } from '@/components/marketing/CompareAtGlanceCompact';
+import { LAYER_SUMMARIES, type LayerSlug } from '@/content/intelligenceLayers';
 import { cn } from '@/lib/cn';
 
 const fadeUp = {
@@ -72,12 +76,15 @@ const faqItems: { q: string; a: string }[] = [
   },
 ];
 
+const OPT_EVAL_LAYER_SLUGS: LayerSlug[] = ['optimization', 'evaluation'];
+
 export function InfrastructureOffering() {
   return (
     <>
       <InfraHero />
       <InfraWhatYouGet />
       <InfraHowItWorks />
+      <InfraOptimizationEvaluation />
       <InfraUseCases />
       <InfraPricing />
       <InfraEconomics />
@@ -169,6 +176,76 @@ function InfraHero() {
             </div>
           </div>
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+const modelsWorkflowSteps = [
+  {
+    Icon: BeakerIcon,
+    title: 'Training',
+    body: 'Fit models against your datasets with the settings in `.deadwood.yml`—method, epochs, and data paths stay reviewable in git. Each run yields checkpoints you can promote when ready.',
+  },
+  {
+    Icon: CodeBracketSquareIcon,
+    title: 'Weights',
+    body: 'Checkpoints are versioned artifacts: hashed bundles tied to commits, stored off-laptop with redundancy, and easy to roll back. You always know which parameters shipped with which release.',
+  },
+  {
+    Icon: RocketLaunchIcon,
+    title: 'Inference',
+    body: 'Serve predictions from the weights marked `production: true`. Flip that flag in one commit and route traffic to the new bundle—no separate deploy dance, same push workflow your team already uses.',
+  },
+];
+
+function InfraModelsWorkflow() {
+  return (
+    <section
+      id="models-workflow"
+      className="border-t border-white/[0.06] bg-dw-bg py-section scroll-mt-28"
+      aria-labelledby="models-workflow-heading"
+    >
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="font-sans text-xs uppercase tracking-[0.22em] text-dw-tan">Models as code</p>
+          <h2
+            id="models-workflow-heading"
+            className="mt-3 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] text-dw-cream"
+          >
+            Training, weights, and inference in git
+          </h2>
+          <p className="mt-4 font-sans text-base leading-relaxed text-dw-muted">
+            Manifests in <span className="font-mono text-dw-highlight">.deadwood.yml</span>, versioned checkpoints, and
+            production routing—without a separate deploy step.
+          </p>
+        </div>
+        <div className="relative mx-auto mt-14 max-w-6xl">
+          <motion.div
+            aria-hidden
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            className="pointer-events-none absolute left-[10%] right-[10%] top-[36px] z-0 hidden h-px origin-left bg-gradient-to-r from-dw-tan/15 via-dw-tan/45 to-dw-tan/15 lg:block"
+          />
+          <div className="relative z-[1] flex flex-col gap-10 lg:flex-row lg:items-stretch lg:justify-between lg:gap-4">
+            {modelsWorkflowSteps.map((step, i) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="relative flex flex-1 flex-col rounded-[22px] border border-white/[0.08] bg-dw-surface/35 p-6 backdrop-blur-[24px] transition-shadow hover:shadow-[0_12px_40px_rgba(201,169,110,0.08)]"
+              >
+                <step.Icon className="h-10 w-10 text-dw-tan" aria-hidden />
+                <h3 className="mt-4 font-display text-xl text-dw-cream">{step.title}</h3>
+                <p className="mt-3 flex-1 font-sans text-sm leading-relaxed text-dw-muted">{step.body}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -435,6 +512,82 @@ function InfraHowItWorks() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function InfraOptimizationEvaluation() {
+  return (
+    <section
+      id="layers-intelligence"
+      className="relative overflow-hidden border-t border-white/[0.06] bg-dw-bg py-section scroll-mt-28"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_50%_at_50%_-8%,rgba(201,169,110,0.11)_0%,transparent_52%)]"
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute inset-0 topo-pattern opacity-[0.18]" aria-hidden />
+
+      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="font-sans text-xs uppercase tracking-[0.22em] text-dw-tan">
+            Before you widen traffic or flip production
+          </p>
+          <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,2.85rem)] leading-[1.12] text-dw-cream">
+            Optimization and evaluation
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl font-sans text-base leading-relaxed text-dw-muted sm:text-lg">
+            <span className="text-dw-cream">Optimization</span> buys more quality per dollar from the hardware you already
+            have. <span className="text-dw-cream">Evaluation</span> ties scores to the same commits as your weights—so
+            promotions are measured, comparable, and explainable.
+          </p>
+        </div>
+
+        <div className="mx-auto mt-14 grid max-w-5xl gap-6 lg:grid-cols-2 lg:gap-8">
+          {OPT_EVAL_LAYER_SLUGS.map((slug) => (
+            <InfraOptEvalLayerCard key={slug} slug={slug} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function InfraOptEvalLayerCard({ slug }: { slug: LayerSlug }) {
+  const L = LAYER_SUMMARIES[slug];
+  const summary =
+    slug === 'optimization'
+      ? 'Tune batching and precision for your hardware so training and serving cost less.'
+      : slug === 'evaluation'
+        ? 'Score models on benchmarks tied to the same commits as your weights—know what changed before you promote.'
+        : L.cardDesc;
+
+  return (
+    <div>
+      <Link
+        href={`/layers/${slug}`}
+        aria-label={`${L.title} — open layer detail`}
+        className="group block h-full rounded-[24px] focus:outline-none focus-visible:ring-2 focus-visible:ring-dw-tan focus-visible:ring-offset-2 focus-visible:ring-offset-dw-bg"
+      >
+        <motion.div
+          whileHover={{ y: -4 }}
+          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          className={cn(
+            'flex h-full min-h-[220px] flex-col rounded-[24px] border border-white/[0.1] bg-gradient-to-br p-6 shadow-dw-lift backdrop-blur-xl transition-shadow duration-300 sm:p-8',
+            L.cardTint,
+            'hover:border-dw-tan/30 hover:shadow-[0_16px_48px_rgba(201,169,110,0.16)]'
+          )}
+        >
+          <div className="flex items-start justify-center sm:justify-start">
+            <LayerGlyph slug={slug} className="h-11 w-11 shrink-0 text-dw-tan sm:h-12 sm:w-12" aria-hidden />
+          </div>
+          <h3 className="mt-5 font-display text-2xl text-dw-cream sm:text-[1.65rem]">{L.title}</h3>
+          <p className="mt-4 flex-1 font-sans text-sm leading-relaxed text-dw-muted">{summary}</p>
+          <span className="mt-6 inline-flex font-mono text-xs uppercase tracking-[0.18em] text-dw-highlight transition-colors group-hover:text-dw-tan">
+            Layer detail →
+          </span>
+        </motion.div>
+      </Link>
+    </div>
   );
 }
 

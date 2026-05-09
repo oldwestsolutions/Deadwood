@@ -2,11 +2,6 @@
 
 import { useId } from 'react';
 import { motion } from 'framer-motion';
-import {
-  BeakerIcon,
-  CodeBracketSquareIcon,
-  RocketLaunchIcon,
-} from '@heroicons/react/24/outline';
 import { CompareAtGlanceCompact } from '@/components/marketing/CompareAtGlanceCompact';
 import { MotionSection } from '@/components/marketing/MotionSection';
 
@@ -374,24 +369,6 @@ function ModelsAsCodeOceanIllustration() {
   );
 }
 
-const flowSteps = [
-  {
-    Icon: BeakerIcon,
-    title: 'Training',
-    body: 'Fit models against your datasets with the settings in `.deadwood.yml`—method, epochs, and data paths stay reviewable in git. Each run yields checkpoints you can promote when ready.',
-  },
-  {
-    Icon: CodeBracketSquareIcon,
-    title: 'Weights',
-    body: 'Checkpoints are versioned artifacts: hashed bundles tied to commits, stored off-laptop with redundancy, and easy to roll back. You always know which parameters shipped with which release.',
-  },
-  {
-    Icon: RocketLaunchIcon,
-    title: 'Inference',
-    body: 'Serve predictions from the weights marked `production: true`. Flip that flag in one commit and route traffic to the new bundle—no separate deploy dance, same push workflow your team already uses.',
-  },
-];
-
 export function UseCases() {
   return (
     <MotionSection
@@ -500,36 +477,6 @@ export function UseCases() {
               promotion.
             </p>
           </motion.div>
-        </div>
-
-        {/* Three-step flow */}
-        <div className="mx-auto mt-24 max-w-6xl">
-          <div className="relative">
-            <motion.div
-              aria-hidden
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-              className="pointer-events-none absolute left-[10%] right-[10%] top-[36px] z-0 hidden h-px origin-left bg-gradient-to-r from-dw-tan/15 via-dw-tan/45 to-dw-tan/15 lg:block"
-            />
-            <div className="relative z-[1] flex flex-col gap-10 lg:flex-row lg:items-stretch lg:justify-between lg:gap-4">
-              {flowSteps.map((step, i) => (
-                <motion.div
-                  key={step.title}
-                  initial={{ opacity: 0, y: 22 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative flex flex-1 flex-col rounded-[22px] border border-white/[0.08] bg-dw-surface/35 p-6 backdrop-blur-[24px] transition-shadow hover:shadow-[0_12px_40px_rgba(201,169,110,0.08)]"
-                >
-                  <step.Icon className="h-10 w-10 text-dw-tan" aria-hidden />
-                  <h4 className="mt-4 font-display text-xl text-dw-cream">{step.title}</h4>
-                  <p className="mt-3 flex-1 font-sans text-sm leading-relaxed text-dw-muted">{step.body}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Tier comparison (compact) */}

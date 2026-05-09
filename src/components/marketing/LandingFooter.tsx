@@ -20,7 +20,7 @@ const columns: FooterColumn[] = [
     links: [
       { href: '/#models-as-code', label: 'Models as code' },
       { href: '/#chip-optimization', label: 'Chip optimization' },
-      { href: '/#layers-intelligence', label: 'Nine layers' },
+      { href: '/architecture#layers-intelligence', label: 'Optimization & evaluation' },
       { href: '/#pricing', label: 'Pricing' },
       { href: '/#premium', label: 'Premium' },
       { href: '/products', label: 'Products' },

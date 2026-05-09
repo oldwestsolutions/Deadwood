@@ -45,8 +45,8 @@ export function LayersRail({ active }: { active: LayerSlug }) {
         className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-dw-muted"
       >
         <LayerNavArrow slug={active} dir="prev" />
-        <Link href="/#layers-intelligence" className="hover:text-dw-highlight">
-          ↑ All layers on homepage
+        <Link href="/architecture#layers-intelligence" className="hover:text-dw-highlight">
+          ↑ Optimization &amp; evaluation
         </Link>
         <LayerNavArrow slug={active} dir="next" />
       </motion.div>

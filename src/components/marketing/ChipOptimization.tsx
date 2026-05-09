@@ -41,18 +41,9 @@ export function ChipOptimization() {
       />
 
       <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="mx-auto mb-12 max-w-3xl text-center lg:mx-0 lg:max-w-2xl lg:text-left">
+        <div className="mx-auto mb-10 max-w-3xl text-center lg:mx-0 lg:max-w-2xl lg:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-dw-muted">
             Hardware-aware execution paths
-          </p>
-          <h2 className="mt-4 font-display text-4xl text-dw-cream sm:text-[2.75rem]">
-            Optimized for Every Chip
-          </h2>
-          <p className="mt-6 text-base leading-relaxed text-dw-muted sm:text-lg">
-            Deadwood compiles your Python to run on whatever hardware you choose — NVIDIA, AMD,
-            Intel, or Apple Silicon. Each chip gets a custom optimization path: GPU parallelization
-            for Monte Carlo, CPU threading for algo trading, Metal acceleration for edge learning.
-            You write once. We route smart.
           </p>
         </div>
 
