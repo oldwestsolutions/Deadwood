@@ -23,6 +23,7 @@ const columns: FooterColumn[] = [
       { href: '/architecture#layers-intelligence', label: 'Optimization & evaluation' },
       { href: '/#pricing', label: 'Pricing' },
       { href: '/whitepaper', label: 'Whitepaper' },
+      { href: '/weights-checkpoints', label: 'Weights & checkpoints' },
       { href: '/#premium', label: 'Premium' },
       { href: '/products', label: 'Products' },
       { href: '/solutions', label: 'Solutions' },

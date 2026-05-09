@@ -327,10 +327,27 @@ function PremiumIllustration() {
 }
 
 export function ConsequentialLearning() {
+  const loopSteps = [
+    'Collect feedback (API, logging)',
+    'Retrain models (serverless, scalable)',
+    'Version checkpoints (full history)',
+    'Promote winners (one-click, or automatic)',
+    'Monitor performance (alerts, metrics)',
+  ];
+
+  const featureBullets = [
+    'Automatic feedback collection (user interactions → training data)',
+    'Serverless model retraining (no infrastructure to manage)',
+    'Checkpoint versioning (full model history, git-like)',
+    'One-click promotion (new model → production)',
+    'Continuous learning (models improve with every use)',
+    'Observable system (metrics, monitoring, audit trail)',
+  ];
+
   return (
     <MotionSection id="premium" className="relative py-section">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 lg:items-start">
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-10">
           <div className="relative lg:col-span-7">
             <motion.figure
               initial={{ opacity: 0, rotate: -0.4 }}
@@ -340,6 +357,21 @@ export function ConsequentialLearning() {
               className="relative overflow-hidden rounded-[28px] border border-dw-tan/15 bg-gradient-to-br from-dw-tan/[0.07] via-dw-surface/90 to-dw-bg p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_24px_80px_rgba(0,0,0,0.35)] sm:p-7 lg:mr-8 lg:-translate-y-4"
             >
               <div
+                className="pointer-events-none absolute inset-0 z-[1] rounded-[inherit] opacity-[0.07]"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(90deg, rgba(201,169,110,0.35) 1px, transparent 1px), linear-gradient(rgba(201,169,110,0.35) 1px, transparent 1px)',
+                  backgroundSize: '28px 28px',
+                }}
+                aria-hidden
+              />
+              <motion.div
+                className="pointer-events-none absolute inset-0 z-[1] rounded-[inherit] bg-[radial-gradient(circle_at_50%_38%,rgba(201,169,110,0.16),transparent_58%)]"
+                animate={{ opacity: [0.45, 0.85, 0.45] }}
+                transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
+                aria-hidden
+              />
+              <div
                 className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,rgba(201,169,110,0.12)_0%,transparent_68%)] blur-2xl"
                 aria-hidden
               />
@@ -347,7 +379,7 @@ export function ConsequentialLearning() {
                 className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,rgba(212,184,150,0.08)_0%,transparent_65%)] blur-2xl"
                 aria-hidden
               />
-              <div className="relative flex min-h-[260px] items-stretch py-1 sm:min-h-[300px] sm:py-2">
+              <div className="relative z-[2] flex min-h-[260px] items-stretch py-1 sm:min-h-[300px] sm:py-2">
                 <PremiumIllustration />
               </div>
               <figcaption className="sr-only">
@@ -359,23 +391,52 @@ export function ConsequentialLearning() {
             </motion.figure>
           </div>
 
-          <div className="lg:col-span-5 lg:pt-6">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-dw-muted">
-              Premium
-            </p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-dw-cream sm:text-[2.75rem]">
-              Production Paths
+          <div className="lg:col-span-5 lg:pt-4">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-dw-muted">Premium</p>
+            <h2 className="mt-3 font-display text-[clamp(1.85rem,4vw,2.65rem)] leading-[1.12] text-dw-cream">
+              Deadwood Premium: Your Cybernetic Copilot
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-dw-muted sm:text-lg">
-              Open a Premium account for higher API and training quotas, Snowflake-connected datasets, and private,
-              versioned weight storage—so your team can promote models through the same git workflow with room to grow.
+            <h3 className="mt-4 font-sans text-lg font-semibold leading-snug text-dw-tan sm:text-xl">
+              Models that learn from every interaction. No infrastructure to manage.
+            </h3>
+            <div className="mt-5 space-y-4 text-sm leading-relaxed text-dw-muted sm:text-[15px]">
+              <p>
+                Deadwood Premium is a cybernetic learning system. It turns your user feedback into self-improving models,
+                automatically.
+              </p>
+              <p>
+                Every user interaction is a learning opportunity. Every rating, every click, every transaction—Deadwood
+                observes, learns, and adapts. Models retrain automatically. Accuracy improves continuously. Your product
+                gets smarter with every use.
+              </p>
+              <p className="font-medium text-dw-cream">Under the hood, Deadwood automates the cybernetic loop:</p>
+              <ol className="list-decimal space-y-2 pl-5 marker:text-dw-tan">
+                {loopSteps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+              <p>
+                You define the feedback signal. Deadwood handles the learning infrastructure. No data pipelines to
+                manage, no DevOps overhead, no manual retraining. Just models that learn from your users, automatically.
+              </p>
+            </div>
+            <ul className="mt-6 space-y-2.5 text-sm leading-relaxed text-dw-muted sm:text-[15px]">
+              {featureBullets.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="shrink-0 text-dw-tan">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 font-display text-base italic leading-snug text-dw-tan/95 sm:text-lg">
+              Want to see how it works? Dive into the details of Deadwood&apos;s cybernetic learning system →
             </p>
-            <motion.div className="mt-10" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div className="mt-6" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="/register?tier=premium"
+                href="/weights-checkpoints"
                 className="inline-flex rounded-full bg-dw-tan px-8 py-3.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm hover:shadow-dw-glow"
               >
-                Get Premium
+                Explore Weights &amp; Checkpoints
               </Link>
             </motion.div>
           </div>
