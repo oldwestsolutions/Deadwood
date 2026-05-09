@@ -39,7 +39,7 @@ export function DownloadView() {
       <NavBar />
       <main className="relative overflow-hidden pt-32 pb-section">
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(201,169,110,0.12)_0%,transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(22,20,17,0.65)_0%,transparent_42%)]"
           aria-hidden
         />
         <div className="relative mx-auto max-w-6xl px-6 lg:px-8">

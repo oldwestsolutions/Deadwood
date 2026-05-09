@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --dw-bg: #0a0a08;
-  --dw-surface: #1a1814;
+  --dw-bg: #080806;
+  --dw-surface: #141210;
   --dw-tan: #c9a96e;
   --dw-cream: #ede9e0;
   --dw-muted: #7a7570;
@@ -55,82 +55,57 @@
   }
 
   /**
-   * Warm wood-grain feel: tight vertical striations + broader growth rings,
-   * then soft radial “figure” patches (tan highlight + deeper heartwood).
+   * Sitewide backdrop: matte charcoal with hairline grain — no radial “spots”.
    */
-  .mesh-layer {
-    background-color: var(--dw-bg);
-    background-image:
-      repeating-linear-gradient(
-        90.25deg,
-        transparent 0px,
-        transparent 5px,
-        rgba(48, 40, 30, 0.045) 5px,
-        rgba(48, 40, 30, 0.045) 6px
-      ),
-      repeating-linear-gradient(
-        89deg,
-        transparent 0px,
-        transparent 42px,
-        rgba(34, 30, 24, 0.065) 42px,
-        rgba(34, 30, 24, 0.065) 43px
-      ),
-      repeating-linear-gradient(
-        93deg,
-        rgba(255, 248, 235, 0.014) 0px,
-        transparent 2px,
-        transparent 9px
-      ),
-      radial-gradient(
-        ellipse 120% 80% at 90% -10%,
-        rgba(201, 169, 110, 0.16) 0%,
-        transparent 45%
-      ),
-      radial-gradient(
-        ellipse 70% 50% at 15% 60%,
-        rgba(95, 76, 52, 0.33) 0%,
-        transparent 50%
-      ),
-      radial-gradient(
-        ellipse 50% 40% at 70% 85%,
-        rgba(42, 38, 32, 0.92) 0%,
-        transparent 55%
-      ),
-      repeating-linear-gradient(
-        96deg,
-        rgba(14, 13, 11, 0.55) 0px,
-        rgba(26, 24, 20, 0.35) 140px,
-        rgba(12, 11, 9, 0.65) 320px
-      );
-  }
-
-  /** Sitewide undertone so flat sections still feel like stained timber */
   .dw-body-grain {
     background-color: var(--dw-bg);
     background-image:
       repeating-linear-gradient(
-        90.5deg,
+        92deg,
         transparent 0px,
-        transparent 6px,
-        rgba(44, 38, 30, 0.038) 6px,
-        rgba(44, 38, 30, 0.038) 7px
+        transparent 8px,
+        rgba(48, 42, 34, 0.045) 8px,
+        rgba(48, 42, 34, 0.045) 9px
       ),
       repeating-linear-gradient(
         88deg,
         transparent 0px,
-        transparent 72px,
-        rgba(32, 28, 22, 0.055) 72px,
-        rgba(32, 28, 22, 0.055) 73px
+        transparent 120px,
+        rgba(24, 22, 18, 0.55) 120px,
+        rgba(24, 22, 18, 0.55) 121px
       ),
-      radial-gradient(
-        ellipse 130% 70% at 50% -20%,
-        rgba(201, 169, 110, 0.055) 0%,
-        transparent 48%
+      linear-gradient(
+        180deg,
+        rgba(30, 27, 22, 0.65) 0%,
+        transparent 28%,
+        transparent 72%,
+        rgba(4, 4, 3, 0.85) 100%
+      );
+  }
+
+  /** Denser grain for alternate shells — still no radial blobs. */
+  .mesh-layer {
+    background-color: var(--dw-bg);
+    background-image:
+      repeating-linear-gradient(
+        91deg,
+        transparent 0px,
+        transparent 6px,
+        rgba(44, 38, 30, 0.06) 6px,
+        rgba(44, 38, 30, 0.06) 7px
       ),
-      radial-gradient(
-        ellipse 80% 55% at 0% 85%,
-        rgba(65, 52, 38, 0.14) 0%,
-        transparent 55%
+      repeating-linear-gradient(
+        89deg,
+        transparent 0px,
+        transparent 56px,
+        rgba(32, 28, 22, 0.08) 56px,
+        rgba(32, 28, 22, 0.08) 57px
+      ),
+      linear-gradient(
+        180deg,
+        rgba(26, 23, 19, 0.75) 0%,
+        transparent 36%,
+        transparent 100%
       );
   }
 

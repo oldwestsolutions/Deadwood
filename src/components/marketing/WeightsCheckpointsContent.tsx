@@ -23,16 +23,7 @@ const FEATURE_BULLETS = [
 function HeroGlow() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <motion.div
-        className="absolute -left-1/4 top-0 h-[420px] w-[420px] rounded-full bg-dw-tan/[0.09] blur-[100px]"
-        animate={{ opacity: [0.35, 0.55, 0.35], scale: [1, 1.08, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute -right-1/4 bottom-0 h-[380px] w-[380px] rounded-full bg-[#5A89A0]/[0.12] blur-[90px]"
-        animate={{ opacity: [0.25, 0.45, 0.25], scale: [1.05, 1, 1.05] }}
-        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(16,14,12,0.72)_0%,transparent_52%)]" />
       <svg className="absolute inset-0 h-full w-full opacity-[0.11]" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="wc-grid" width="32" height="32" patternUnits="userSpaceOnUse">

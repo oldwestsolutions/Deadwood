@@ -31,15 +31,6 @@ export function ChipOptimization() {
       id="chip-optimization"
       className="relative border-y border-white/[0.06] bg-dw-surface/35 py-section backdrop-blur-sm"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
-        style={{
-          background:
-            'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201, 169, 110, 0.07) 0%, transparent 55%)',
-        }}
-        aria-hidden
-      />
-
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-10 max-w-3xl text-center lg:mx-0 lg:max-w-2xl lg:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-dw-muted">

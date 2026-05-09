@@ -340,26 +340,12 @@ export function ConsequentialLearning() {
               className="relative overflow-hidden rounded-[28px] border border-dw-tan/15 bg-gradient-to-br from-dw-tan/[0.07] via-dw-surface/90 to-dw-bg p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_24px_80px_rgba(0,0,0,0.35)] sm:p-7 lg:mr-8 lg:-translate-y-4"
             >
               <div
-                className="pointer-events-none absolute inset-0 z-[1] rounded-[inherit] opacity-[0.07]"
+                className="pointer-events-none absolute inset-0 z-[1] rounded-[inherit] opacity-[0.05]"
                 style={{
                   backgroundImage:
-                    'linear-gradient(90deg, rgba(201,169,110,0.35) 1px, transparent 1px), linear-gradient(rgba(201,169,110,0.35) 1px, transparent 1px)',
+                    'linear-gradient(90deg, rgba(201,169,110,0.28) 1px, transparent 1px), linear-gradient(rgba(201,169,110,0.28) 1px, transparent 1px)',
                   backgroundSize: '28px 28px',
                 }}
-                aria-hidden
-              />
-              <motion.div
-                className="pointer-events-none absolute inset-0 z-[1] rounded-[inherit] bg-[radial-gradient(circle_at_50%_38%,rgba(201,169,110,0.16),transparent_58%)]"
-                animate={{ opacity: [0.45, 0.85, 0.45] }}
-                transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
-                aria-hidden
-              />
-              <div
-                className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,rgba(201,169,110,0.12)_0%,transparent_68%)] blur-2xl"
-                aria-hidden
-              />
-              <div
-                className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,rgba(212,184,150,0.08)_0%,transparent_65%)] blur-2xl"
                 aria-hidden
               />
               <div className="relative z-[2] flex min-h-[260px] items-stretch py-1 sm:min-h-[300px] sm:py-2">

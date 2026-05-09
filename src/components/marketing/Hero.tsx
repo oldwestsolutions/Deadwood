@@ -77,7 +77,7 @@ export function Hero() {
           }}
           className="relative min-w-0 w-full max-lg:mx-auto max-lg:max-w-xl"
         >
-          <div className="pointer-events-none absolute -inset-4 rounded-[28px] bg-[radial-gradient(ellipse_at_center,_var(--dw-glow)_0%,_transparent_70%)] blur-2xl sm:-inset-6 sm:rounded-[32px]" />
+          <div className="pointer-events-none absolute -inset-2 rounded-[28px] ring-1 ring-white/[0.07] sm:-inset-3 sm:rounded-[32px]" />
           <HeroTerminal />
         </motion.div>
       </div>

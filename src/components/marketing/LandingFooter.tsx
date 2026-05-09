@@ -113,10 +113,7 @@ export function LandingFooter() {
       className="relative mt-auto overflow-hidden border-t border-[#1A1814] bg-[#0A0A08]"
     >
       <div className="pointer-events-none absolute inset-0 topo-pattern opacity-[0.35]" aria-hidden />
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_100%_70%_at_50%_100%,rgba(201,169,110,0.14)_0%,transparent_55%)]"
-        aria-hidden
-      />
+      <div className="pointer-events-none absolute inset-0 topo-pattern opacity-[0.2]" aria-hidden />
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-dw-tan/20 to-transparent"
         aria-hidden

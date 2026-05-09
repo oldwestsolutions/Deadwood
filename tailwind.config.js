@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       colors: {
         dw: {
-          bg: '#0A0A08',
-          surface: '#1A1814',
+          bg: '#080806',
+          surface: '#141210',
           tan: '#C9A96E',
           cream: '#EDE9E0',
           muted: '#7A7570',
@@ -36,7 +36,7 @@ module.exports = {
       },
       backgroundImage: {
         'dw-radial-warm':
-          'radial-gradient(ellipse 80% 60% at 85% 12%, rgba(201, 169, 110, 0.14) 0%, transparent 55%)',
+          'linear-gradient(180deg, rgba(28, 24, 20, 0.5) 0%, transparent 45%)',
       },
       spacing: {
         section: 'clamp(5rem, 12vw, 9rem)',
