@@ -153,7 +153,7 @@ function PremiumIllustration() {
         fontSize={11}
         fontFamily="ui-monospace, monospace"
       >
-        https://train.floppydisk.cc/premium
+        https://train.floppydisk.cc/standard
       </text>
 
       {/* Game bezel */}
@@ -301,7 +301,7 @@ function PremiumIllustration() {
           fontSize={10}
           fontFamily="ui-monospace, monospace"
         >
-          CHECKPOINT ARTIFACTS · learned tensors · commit lineage
+          STANDARD FEATURES · tensor checkpoints · commit lineage
         </text>
         <text
           x={gx0 + 22}
@@ -310,7 +310,7 @@ function PremiumIllustration() {
           fontSize={9}
           fontFamily="ui-monospace, monospace"
         >
-          Hashes bind tensors to commits—inference follows the promoted checkpoint.
+          Weights pin to commits—inference routes through the promoted checkpoint.
         </text>
       </g>
 
@@ -368,8 +368,9 @@ export function ConsequentialLearning() {
               <figcaption className="sr-only">
                 Pixel illustration inside a browser window: night sky, animated ocean waves, beach sand, and an anchor
                 partially buried in the sand with gentle motion. The tab reads Deadwood Software; the URL bar shows the
-                Premium training URL. A status strip summarizes checkpoint artifacts as learned tensors with commit
-                lineage and promotion-driven inference routing.
+                standard training path on train.floppydisk.cc. A status strip labels standard features, tensor checkpoints,
+                and commit lineage, and notes that weights pin to commits with inference routing through the promoted
+                checkpoint.
               </figcaption>
             </motion.figure>
           </div>
@@ -377,21 +378,21 @@ export function ConsequentialLearning() {
           <div className="lg:col-span-5 lg:pt-4">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-dw-muted">Premium</p>
             <h2 className="mt-3 font-display text-[clamp(1.85rem,4vw,2.65rem)] leading-[1.12] text-dw-cream">
-              Deadwood Premium: Your Cybernetic Copilot
+              Deadwood Premium: Standard Features
             </h2>
             <h3 className="mt-4 font-sans text-lg font-semibold leading-snug text-dw-tan sm:text-xl">
-              Models that learn from every interaction. No infrastructure to manage.
+              Models that learn from every interaction.
             </h3>
             <p className="mt-5 text-sm leading-relaxed text-dw-muted sm:text-[15px]">
               Deadwood Premium is a cybernetic learning system. It turns your user feedback into self-improving models,
-              automatically. For the full loop, capabilities, and how checkpoints ship in production, continue below.
+              automatically.
             </p>
             <motion.div className="mt-8" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="/weights-checkpoints"
                 className="inline-flex rounded-full bg-dw-tan px-8 py-3.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm hover:shadow-dw-glow"
               >
-                Explore Weights &amp; Checkpoints
+                Cognitive Intelligence
               </Link>
             </motion.div>
           </div>
