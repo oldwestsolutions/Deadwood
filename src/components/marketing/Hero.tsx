@@ -50,22 +50,18 @@ export function Hero() {
           <div className="flex flex-wrap gap-4">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="/locomotive"
-                className="inline-flex items-baseline gap-[0.02em] rounded-full bg-dw-tan px-8 py-3.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow"
+                href="/snowflake-premium"
+                className="inline-flex rounded-full bg-dw-tan px-6 py-3.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow sm:px-8"
               >
-                <span>Locomotive</span>
-                <span className="font-sans text-[0.58em] font-semibold leading-none tracking-wide text-dw-bg/85 [vertical-align:super]">
-                  TM
-                </span>
-                <span className="sr-only">™</span>
+                Snowflake Premium
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="/docs"
+                href="/architecture"
                 className="inline-flex rounded-full border border-dw-tan/35 bg-transparent px-8 py-3.5 text-sm font-semibold text-dw-cream transition-colors hover:border-dw-highlight hover:bg-white/[0.03]"
               >
-                Read the Docs
+                Local Architecture
               </Link>
             </motion.div>
           </div>

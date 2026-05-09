@@ -16,6 +16,8 @@ module.exports = {
           muted: '#7A7570',
           highlight: '#D4B896',
           glow: 'rgba(201, 169, 110, 0.08)',
+          /** Subtle Snowflake-themed accent — use sparingly (~10% opacity in rgba) */
+          snow: '#E0F5FF',
         },
       },
       fontFamily: {
@@ -30,7 +32,7 @@ module.exports = {
       boxShadow: {
         'dw-glow': '0 0 80px rgba(201, 169, 110, 0.08)',
         'dw-glow-sm': '0 0 40px rgba(201, 169, 110, 0.06)',
-        'dw-lift': '0 24px 48px rgba(0, 0, 0, 0.45)',
+        'dw-glow-ice': '0 0 64px rgba(224, 245, 255, 0.06)',
       },
       backgroundImage: {
         'dw-radial-warm':

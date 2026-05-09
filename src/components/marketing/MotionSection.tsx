@@ -25,7 +25,7 @@ export function MotionSection({ children, className, id }: MotionSectionProps) {
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-72px', amount: 0.15 }}
+      viewport={{ once: true, margin: '80px 0px', amount: 'some' }}
       className={className}
     >
       {children}

@@ -19,19 +19,19 @@ const fadeUp = {
 
 const flowSteps = [
   {
-    Icon: CodeBracketSquareIcon,
-    title: 'Commit Model Config',
-    body: 'Define your model in `.deadwood.yml`. Push to repo. floppydisk.cc detects the change.',
+    Icon: BeakerIcon,
+    title: 'Training',
+    body: 'Fit models against your datasets with the settings in `.deadwood.yml`—method, epochs, and data paths stay reviewable in git. Each run yields checkpoints you can promote when ready.',
   },
   {
-    Icon: BeakerIcon,
-    title: 'Train & Store on Filecoin',
-    body: 'floppydisk.cc trains the model. Stores weights on Filecoin — immutable, decentralized. Model is versioned and permanent.',
+    Icon: CodeBracketSquareIcon,
+    title: 'Weights',
+    body: 'Checkpoints are versioned artifacts: hashed bundles tied to commits, stored off-laptop with redundancy, and easy to roll back. You always know which parameters shipped with which release.',
   },
   {
     Icon: RocketLaunchIcon,
-    title: 'Swap Live',
-    body: 'Set `production: true` in one commit. Model swaps live. Avalanche logs the transaction. No downtime. Full auditability.',
+    title: 'Inference',
+    body: 'Serve predictions from the weights marked `production: true`. Flip that flag in one commit and route traffic to the new bundle—no separate deploy dance, same push workflow your team already uses.',
   },
 ];
 
@@ -78,34 +78,40 @@ export function UseCases() {
             <h3 className="font-display text-[clamp(1.5rem,3vw,2rem)] leading-tight text-dw-cream lg:text-[32px]">
               Define Your Models
             </h3>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-dw-muted">
+            <div className="mt-6 space-y-4 text-sm leading-relaxed text-dw-muted">
               <p>
-                Your models are code. Version them like code. Write a `.deadwood.yml` file in your repo.
-                Commit it. floppydisk.cc trains the model, versions it, and stores it.
+                Think of your AI models the same way you think about your application code. You add a small
+                config file called <span className="text-dw-cream">`.deadwood.yml`</span> next to everything
+                else in your repository. In plain language, it lists your models, what data they learn from,
+                and which model should be running in production when someone uses your product.
               </p>
               <p>
-                When you swap models, one commit changes production. No downtime. No manual deployments.
-                Just git push.
+                When you are happy with a change, you commit and push like normal. There is no separate
+                “deployment button” for the model: updating production is part of the same git workflow your
+                team already knows. That keeps releases predictable and easy to roll back if something looks
+                wrong.
               </p>
               <p>
-                Every model version is hashed and stored on Filecoin — decentralized, immutable,
-                permanent. If floppydisk.cc goes down, your models are recoverable. Your model history is
-                forever.
+                The trained model files (the weights) are stored on a decentralized network, so copies live in
+                many places instead of on one company&apos;s hard drive. If one host disappears, the data can
+                still be fetched from elsewhere, so you are not betting everything on a single machine staying
+                online forever.
               </p>
               <p>
-                Every swap — every change to production — is recorded on Avalanche. You see which model was
-                serving which user at what time. Perfect auditability.
+                Whenever production switches from one model version to another, that change is written to a
+                permanent record. Later you can see what was live and when—helpful for debugging, compliance,
+                or just explaining to your team what shipped last Tuesday.
               </p>
             </div>
-            <ul className="mt-8 space-y-3 border-l border-dw-tan/25 pl-6 font-sans text-[15px] leading-relaxed text-dw-muted">
+            <ul className="mt-8 space-y-4 border-l border-dw-tan/25 pl-6 font-sans text-sm leading-relaxed text-dw-muted">
               <li>
-                <span className="text-dw-cream">`.deadwood.yml`</span> declares models, training data, and
-                production rules
+                The ledger keeps a permanent, timestamped record of production changes—who pointed traffic at
+                which model and when—so audits do not rely on chat logs or fuzzy memory.
               </li>
-              <li>Models stay in your repo — version controlled, auditable, reproducible</li>
-              <li>floppydisk.cc handles training, versioning, and deployment</li>
-              <li>Filecoin stores model weights — decentralized, immutable, redundant</li>
-              <li>Avalanche logs every swap — transparent, on-chain, verifiable</li>
+              <li>
+                Every model change is version control: branches, tags, and merges work the same way they do
+                for your code, so you always know which definition shipped with which release.
+              </li>
             </ul>
           </motion.div>
 
@@ -123,9 +129,9 @@ export function UseCases() {
                   .deadwood.yml
                 </span>
               </div>
-              <pre className="max-h-[min(82vh,620px)] overflow-x-auto overflow-y-auto whitespace-pre text-left [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-dw-tan/20">
+              <pre className="max-h-[min(82vh,620px)] overflow-x-auto overflow-y-auto whitespace-pre bg-[radial-gradient(ellipse_120%_80%_at_50%_100%,rgba(16,185,129,0.06)_0%,transparent_55%)] px-1 py-0.5 text-left font-mono tracking-[0.04em] [text-shadow:0_0_24px_rgba(52,211,153,0.12)] [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-emerald-500/25">
                 <code className="text-dw-muted">
-                  <span className="text-dw-muted"># Model version control in your repo{'\n'}</span>
+                  <span className="text-emerald-500/55"># ciphertext manifest — unlock at deploy{'\n'}</span>
                   <span className="text-dw-tan">version</span>
                   <span className="text-dw-muted">: </span>
                   <span className="text-dw-highlight">1</span>
@@ -226,32 +232,33 @@ export function UseCases() {
                   <span className="text-dw-muted">: </span>
                   <span className="text-dw-highlight">true</span>
                   {'\n'}
-                  <span className="text-dw-tan">storage</span>
+                  <span className="text-dw-tan">vault</span>
                   <span className="text-dw-muted">:{'\n'}</span>
                   {'  '}
-                  <span className="text-dw-tan">filecoin</span>
+                  <span className="text-dw-tan">ciphertext</span>
                   <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">true</span>
+                  <span className="text-emerald-400/90">&quot;ENC:v3:a8f21cb904…e771&quot;</span>
                   {'\n'}
                   {'  '}
                   <span className="text-dw-tan">redundancy</span>
                   <span className="text-dw-muted">: </span>
                   <span className="text-dw-highlight">3</span>
                   {'\n'}
-                  <span className="text-dw-tan">settlement</span>
+                  <span className="text-dw-tan">audit</span>
                   <span className="text-dw-muted">:{'\n'}</span>
                   {'  '}
-                  <span className="text-dw-tan">chain</span>
+                  <span className="text-dw-tan">attestation</span>
                   <span className="text-dw-muted">: </span>
-                  <span className="text-dw-highlight">&quot;avalanche&quot;</span>
+                  <span className="text-emerald-400/90">&quot;SIG:ed25519:9Qm…kL2f&quot;</span>
                 </code>
               </pre>
             </div>
             <p className="border-t border-white/[0.06] bg-dw-surface/25 px-4 py-3.5 font-sans text-sm leading-relaxed text-dw-muted sm:px-5">
-              Commit this file. floppydisk.cc trains{' '}
-              <span className="text-dw-cream">trading_taste_v2</span>, stores on Filecoin. When you set{' '}
-              <span className="font-mono text-dw-highlight">production: true</span>, your app swaps to the
-              new model — one Avalanche transaction. Live.
+              Commit this file. Training runs for{' '}
+              <span className="text-dw-cream">trading_taste_v2</span>, and weights are stored across redundant
+              network storage. When you set{' '}
+              <span className="font-mono text-dw-highlight">production: true</span>, your app swaps to the new
+              model in one step—with a permanent audit trail. Live.
             </p>
           </motion.div>
         </div>
@@ -337,11 +344,11 @@ Result: New model in production. Perfect auditability. No manual deployment. No 
             transition={{ duration: 0.5 }}
             className="rounded-[20px] border border-white/[0.08] bg-dw-surface/40 p-6 text-center backdrop-blur-[24px] transition-shadow hover:shadow-[0_12px_40px_rgba(201,169,110,0.06)]"
           >
-            <h4 className="font-display text-lg text-dw-cream">Why Filecoin for Model Storage?</h4>
+            <h4 className="font-display text-lg text-dw-cream">Optimization</h4>
             <p className="mt-3 font-sans text-sm leading-relaxed text-dw-muted">
-              Model weights are precious. If you lose them, you retrain from scratch. Filecoin ensures your
-              models are stored permanently on decentralized nodes. If one node fails, others have copies.
-              If floppydisk.cc ever shuts down, your models are recoverable. Immutability matters for AI.
+              Training and inference are expensive when left on defaults. Deadwood routes workloads through
+              hardware-aware paths—parallelism, batching, and precision choices matched to your chips—so each
+              epoch and each serving hour buys more quality per dollar before you ever widen traffic.
             </p>
           </motion.div>
           <motion.div
@@ -351,11 +358,12 @@ Result: New model in production. Perfect auditability. No manual deployment. No 
             transition={{ duration: 0.5, delay: 0.08 }}
             className="rounded-[20px] border border-white/[0.08] bg-dw-surface/40 p-6 text-center backdrop-blur-[24px] transition-shadow hover:shadow-[0_12px_40px_rgba(201,169,110,0.06)]"
           >
-            <h4 className="font-display text-lg text-dw-cream">Why Avalanche?</h4>
+            <h4 className="font-display text-lg text-dw-cream">Evaluation</h4>
             <p className="mt-3 font-sans text-sm leading-relaxed text-dw-muted">
-              Every model swap is a transaction. Every production change is logged. Avalanche gives you fast,
-              cheap, immutable records — which model served which user, and the full history. Perfect
-              auditability. Pennies, not dollars.
+              Shipping a model without a consistent scoreboard is flying blind. Tie evaluations to the same
+              commits as your weights—fixed datasets, regression metrics, and side-by-side baselines—so when
+              production flips, you know exactly what improved, what regressed, and who signed off on the
+              tradeoffs.
             </p>
           </motion.div>
         </div>

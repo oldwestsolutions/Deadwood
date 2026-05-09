@@ -23,7 +23,7 @@ const cardVariants = {
 };
 
 const logoClass =
-  'h-14 w-auto max-w-[120px] text-dw-tan transition-colors group-hover:text-dw-highlight';
+  'h-[4.75rem] w-auto max-w-[200px] text-dw-tan transition-colors group-hover:text-dw-highlight sm:h-[5.75rem] sm:max-w-[240px]';
 
 export function ChipOptimization() {
   return (
@@ -70,7 +70,7 @@ export function ChipOptimization() {
               <motion.div key={id} variants={cardVariants} className="min-h-0">
                 <ChipCard
                   href={`/chips/${id}`}
-                  title={v.title}
+                  ariaLabel={`${v.title}: view hardware details`}
                   icon={<Logo className={logoClass} aria-hidden />}
                 />
               </motion.div>

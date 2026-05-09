@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Disclosure } from '@headlessui/react';
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/cn';
 import {
   comparisonRows,
@@ -31,25 +31,23 @@ const cardReveal = {
   },
 };
 
-function Capability({
-  title,
-  detail,
+function TierFeaturesLink({
+  variant,
 }: {
-  title: string;
-  detail?: string;
+  variant: 'filled' | 'outline';
 }) {
   return (
-    <li className="flex gap-3 text-left">
-      <CheckIcon className="mt-0.5 h-5 w-5 shrink-0 text-dw-tan" aria-hidden />
-      <span>
-        <span className="font-sans text-sm text-dw-cream">{title}</span>
-        {detail && (
-          <span className="mt-0.5 block font-sans text-xs leading-snug text-dw-muted">
-            {detail}
-          </span>
-        )}
-      </span>
-    </li>
+    <Link
+      href="#pricing-compare"
+      className={cn(
+        'flex w-full items-center justify-center rounded-full py-3 text-sm font-semibold transition-colors',
+        variant === 'filled'
+          ? 'border border-dw-tan/35 text-dw-cream hover:border-dw-highlight hover:bg-white/[0.04]'
+          : 'border border-white/[0.12] text-dw-cream hover:border-dw-tan/40 hover:bg-white/[0.04]'
+      )}
+    >
+      Features
+    </Link>
   );
 }
 
@@ -122,7 +120,7 @@ export function Pricing() {
           <motion.article
             variants={cardReveal}
             className={cn(
-              'relative flex flex-col rounded-[20px] p-10',
+              'relative flex h-full min-h-[260px] flex-col rounded-[20px] p-10',
               'border border-dw-muted bg-dw-surface',
               'motion-safe:transition-transform motion-safe:duration-300',
               'hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(201,169,110,0.08)]'
@@ -131,34 +129,26 @@ export function Pricing() {
             <h3 className="font-display text-[32px] text-dw-cream">Catalyst</h3>
             <p className="mt-2 font-sans text-xl text-dw-tan">Free forever</p>
             <p className="mt-2 font-sans text-sm text-dw-muted">Try Deadwood with API key</p>
-            <ul className="mt-8 flex flex-1 flex-col gap-4">
-              <Capability title="1,000 API calls/month" detail="Predictions, inferences, swaps" />
-              <Capability title="1 free model training/month" detail="Train on up to 10K items locally" />
-              <Capability title="Model storage on floppydisk.cc" detail="Version control for your models" />
-              <Capability title="Basic model swap" detail="Switch between base models" />
-              <Capability title="On-chain verification" detail="Avalanche proof of every prediction" />
-              <Capability title="Community support" detail="Discord & GitHub discussions" />
-              <Capability title="Public model marketplace" detail="Browse free and community models" />
-            </ul>
-            <div className="mt-6 space-y-2 border-t border-white/[0.06] pt-6 font-sans text-xs text-dw-muted">
-              <p>Max 1,000 items per training run · Phi-3 & smaller models only</p>
-              <p>Local data only (no Snowflake) · Hourly token settlement batches · Community (24–48hr)</p>
+            <div className="mt-auto flex flex-col gap-3 pt-10">
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  href="/register?plan=catalyst"
+                  className="flex w-full items-center justify-center rounded-full bg-dw-tan py-3.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow"
+                >
+                  Start Free
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <TierFeaturesLink variant="outline" />
+              </motion.div>
             </div>
-            <motion.div className="mt-10" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Link
-                href="/register?plan=catalyst"
-                className="flex w-full items-center justify-center rounded-full bg-dw-tan py-3.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow"
-              >
-                Start Free
-              </Link>
-            </motion.div>
           </motion.article>
 
           {/* Accelerator */}
           <motion.article
             variants={cardReveal}
             className={cn(
-              'relative flex flex-col rounded-[20px] p-10',
+              'relative flex h-full min-h-[260px] flex-col rounded-[20px] p-10',
               'border-2 border-dw-tan',
               'bg-gradient-to-br from-dw-surface/80 via-dw-surface/70 to-dw-tan/[0.1]',
               'backdrop-blur-[24px]',
@@ -190,43 +180,26 @@ export function Pricing() {
             <p className="mt-2 font-sans text-sm text-dw-muted">
               Production AI with Snowflake integration
             </p>
-            <ul className="mt-8 flex flex-1 flex-col gap-3.5">
-              <Capability title="100,000 API calls/month" detail="Predictions, inferences, swaps" />
-              <Capability title="10 model trainings/month" detail="Each up to 1M items" />
-              <Capability title="Full model ecosystem access" detail="LLaMA, Falcon, Mistral, custom" />
-              <Capability title="Advanced model selection" detail="Choose base architecture per use case" />
-              <Capability title="Fairness + performance eval" detail="BLEU, ROUGE, F1, bias detection" />
-              <Capability title="Real-time on-chain settlement" detail="Avalanche — instant token transfers" />
-              <Capability title="Private floppydisk.cc workspace" detail="Version-controlled model storage" />
-              <Capability title="Model swap without retraining" detail="Deploy new models instantly" />
-              <Capability title="Email + Slack support" detail="4-hour response SLA" />
-              <Capability title="Usage dashboard" detail="API calls, costs, earnings" />
-              <Capability title="Custom model library" detail="Save training configs, reuse" />
-              <Capability
-                title="Snowflake integration"
-                detail="Query your instance · Train on 100M+ rows · Models never leave your cloud · Pay for queries, not bulk data movement"
-              />
-            </ul>
-            <div className="mt-6 space-y-1 border-t border-white/[0.08] pt-6 font-sans text-xs text-dw-muted">
-              <p>Inference latency SLA: &lt; 500ms · Snowflake connection included (your instance)</p>
-              <p>Full-weight fine-tuning costs extra tokens · Email/Slack, 4-hour response</p>
+            <div className="mt-auto flex flex-col gap-3 pt-10">
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  href="/pricing/accelerator"
+                  className="flex w-full items-center justify-center rounded-full bg-dw-tan py-3.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow"
+                >
+                  Upgrade to Accelerator
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <TierFeaturesLink variant="filled" />
+              </motion.div>
             </div>
-            <p className="mt-2 font-sans text-xs text-dw-muted">Most teams start here.</p>
-            <motion.div className="mt-8" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Link
-                href="/pricing/accelerator"
-                className="flex w-full items-center justify-center rounded-full bg-dw-tan py-3.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow"
-              >
-                Upgrade to Accelerator
-              </Link>
-            </motion.div>
           </motion.article>
 
           {/* Autonomous */}
           <motion.article
             variants={cardReveal}
             className={cn(
-              'relative flex flex-col rounded-[20px] p-10',
+              'relative flex h-full min-h-[260px] flex-col rounded-[20px] p-10',
               'border border-dw-tan/15 bg-dw-surface',
               'motion-safe:transition-transform motion-safe:duration-300',
               'hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(201,169,110,0.1)]'
@@ -237,35 +210,19 @@ export function Pricing() {
             <p className="mt-2 font-sans text-sm text-dw-muted">
               Unlimited scale, Snowflake data lake
             </p>
-            <ul className="mt-8 flex flex-1 flex-col gap-3.5">
-              <Capability title="Unlimited API calls" detail="Predictions, inferences, swaps" />
-              <Capability title="Unlimited model trainings" detail="Any size dataset" />
-              <Capability title="Full model ecosystem" detail="LLaMA, Falcon, Mistral, multimodal, custom" />
-              <Capability title="Dedicated GPU cluster" detail="Faster model training" />
-              <Capability title="Private floppydisk.cc instance" detail="Dedicated storage, Filecoin backup" />
-              <Capability title="Real-time on-chain settlement" detail="Cosmos or Avalanche — your choice" />
-              <Capability
-                title="Enterprise Snowflake integration"
-                detail="Dedicated cluster · Unlimited querying · Petabyte-scale training · Data residency · VPN/private link"
-              />
-              <Capability title="Custom model training" detail="Bespoke architectures for your domain" />
-              <Capability title="Compliance + security" detail="HIPAA, SOC2, custom agreements" />
-              <Capability title="Dedicated account manager" detail="Strategy, architecture, optimization" />
-              <Capability title="Training & workshops" detail="Onboard your team on Deadwood" />
-              <Capability title="SLA guarantees" detail="99.99% uptime · &lt; 50ms latency" />
-              <Capability title="Priority feature requests" detail="Influence Deadwood&apos;s roadmap" />
-            </ul>
-            <p className="mt-auto pt-8 font-sans text-xs text-dw-muted">
-              For trading desks, ML labs, enterprises with Snowflake data lakes.
-            </p>
-            <motion.div className="mt-8" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Link
-                href="/contact/enterprise"
-                className="flex w-full items-center justify-center rounded-full border border-dw-tan/45 bg-transparent py-3.5 text-sm font-semibold text-dw-cream transition-colors hover:border-dw-highlight hover:bg-dw-tan/10"
-              >
-                Talk to Our Team
-              </Link>
-            </motion.div>
+            <div className="mt-auto flex flex-col gap-3 pt-10">
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  href="/contact/enterprise"
+                  className="flex w-full items-center justify-center rounded-full border border-dw-tan/45 bg-transparent py-3.5 text-sm font-semibold text-dw-cream transition-colors hover:border-dw-highlight hover:bg-dw-tan/10"
+                >
+                  Talk to Our Team
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <TierFeaturesLink variant="outline" />
+              </motion.div>
+            </div>
           </motion.article>
         </motion.div>
 
@@ -303,11 +260,12 @@ export function Pricing() {
 
         {/* Comparison table */}
         <motion.div
+          id="pricing-compare"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="mt-20"
+          className="mt-20 scroll-mt-28"
         >
           <h3 className="text-center font-display text-2xl text-dw-cream">Compare at a glance</h3>
           <div className="mt-8 overflow-x-auto rounded-[20px] border border-white/[0.08] bg-dw-surface/40 backdrop-blur-xl">

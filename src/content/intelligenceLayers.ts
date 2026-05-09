@@ -99,7 +99,7 @@ export const LAYER_SUMMARIES: Record<LayerSlug, LayerSummary> = {
     title: 'Evaluation & verification',
     subtitle: 'Proof it works',
     cardDesc:
-      'BLEU, ROUGE, perplexity, F1, fairness checks, on-chain anchoring. Evidence you can trust.',
+      'BLEU, ROUGE, perplexity, F1, fairness checks, red-team suites. Evidence that gates a promotion.',
     cardTint:
       'from-emerald-950/35 via-dw-tan/14 to-dw-surface/90',
   },
@@ -109,7 +109,7 @@ export const LAYER_SUMMARIES: Record<LayerSlug, LayerSummary> = {
     title: 'Deployment & monitoring',
     subtitle: 'Production reality',
     cardDesc:
-      'Versioning, A/B tests, scaling, alerts, cost tracking. Keeping models alive in the wild.',
+      'Promoted weights, routing, and traffic shifts post against the token network—metered usage, reconcilable receipts, no shadow billing.',
     cardTint:
       'from-stone-900/50 via-dw-tan/12 to-dw-surface/90',
   },
@@ -119,7 +119,7 @@ export const LAYER_SUMMARIES: Record<LayerSlug, LayerSummary> = {
     title: 'Feedback & fine-tuning',
     subtitle: 'Continuous improvement',
     cardDesc:
-      'SFT, RLHF, DPO, online learning. Turning real usage into better models.',
+      'Production signals and incentives loop back through the same settlement layer—budgeting the next SFT, RLHF, or DPO pass with clear attribution.',
     cardTint:
       'from-rose-950/35 via-dw-tan/14 to-dw-surface/90',
   },
