@@ -22,7 +22,7 @@ const columns: FooterColumn[] = [
       { href: '/architecture#chip-optimization', label: 'Chip optimization' },
       { href: '/architecture#layers-intelligence', label: 'Optimization & evaluation' },
       { href: '/#pricing', label: 'Pricing' },
-      { href: '/faq', label: 'FAQ' },
+      { href: '/whitepaper', label: 'Whitepaper' },
       { href: '/#premium', label: 'Premium' },
       { href: '/products', label: 'Products' },
       { href: '/solutions', label: 'Solutions' },

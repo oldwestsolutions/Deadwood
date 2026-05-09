@@ -219,10 +219,10 @@ export function AccountSignupPromo({ className }: AccountSignupPromoProps) {
           </motion.div>
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
-              href="/faq"
+              href="/whitepaper"
               className="inline-flex items-center justify-center rounded-full border border-dw-tan/35 px-8 py-3.5 text-center text-sm font-semibold text-dw-cream transition-colors hover:border-dw-highlight hover:bg-white/[0.04]"
             >
-              FAQ
+              Whitepaper
             </Link>
           </motion.div>
         </div>

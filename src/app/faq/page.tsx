@@ -1,26 +1,16 @@
-import type { Metadata } from 'next';
-import { NavBar } from '@/components/marketing/NavBar';
-import { LandingFooter } from '@/components/marketing/LandingFooter';
-import { PricingFaqAccordion } from '@/components/marketing/PricingFaqAccordion';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'FAQ — Deadwood',
-  description:
-    'Answers about API calls, training runs, Snowflake integration, Avalanche settlement, and using Deadwood without Snowflake.',
-};
+import { useEffect } from 'react';
 
-export default function FaqPage() {
+/** FAQ content lives on `/snowflake-premium#premium-faq`. Server redirects omit fragments. */
+export default function FaqRedirectPage() {
+  useEffect(() => {
+    window.location.replace('/snowflake-premium#premium-faq');
+  }, []);
+
   return (
-    <div className="min-h-screen bg-dw-bg">
-      <NavBar />
-      <main className="mx-auto max-w-3xl px-4 pb-24 pt-28 sm:px-6 lg:px-8">
-        <h1 className="font-display text-3xl text-dw-cream sm:text-4xl">FAQ</h1>
-        <p className="mt-3 max-w-xl font-sans text-sm leading-relaxed text-dw-muted">
-          Pricing, Snowflake, and platform basics—same answers we surface next to the Premium tier.
-        </p>
-        <PricingFaqAccordion className="mt-8" />
-      </main>
-      <LandingFooter />
+    <div className="flex min-h-screen items-center justify-center bg-dw-bg px-4">
+      <p className="font-sans text-sm text-dw-muted">Opening FAQ…</p>
     </div>
   );
 }

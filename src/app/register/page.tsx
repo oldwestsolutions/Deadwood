@@ -58,7 +58,7 @@ export default function RegisterPage() {
         <h1 className="mt-3 font-display text-3xl tracking-tight text-dw-cream">Create workspace</h1>
         <p className="mt-2 font-sans text-sm leading-relaxed text-dw-muted">
           One account for API keys, training runs, and routing. Questions? See the{' '}
-          <Link href="/faq" className="text-dw-highlight underline-offset-2 hover:underline">
+          <Link href="/snowflake-premium#premium-faq" className="text-dw-highlight underline-offset-2 hover:underline">
             FAQ
           </Link>
           .
