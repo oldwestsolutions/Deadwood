@@ -18,7 +18,7 @@ const STREAM_LINES = [
   '→ Warm pool · Snowflake · runners 12',
   'simulating batches ████████████████████ OK (41.2s)',
   'mean_pv: $1,042,180  CI₉₅: [$981,400 — $1,108,900]',
-  'anchoring digest · Cosmos ↔ Avalanche relay · verified',
+  'anchoring digest · Avalanche · verified',
 ];
 
 export function HeroTerminal() {

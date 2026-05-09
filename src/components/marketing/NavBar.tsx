@@ -2,22 +2,49 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-
-const navLinks: { href: string; label: string; external?: boolean }[] = [
-  { href: '/#layers-intelligence', label: 'Layers' },
-  { href: '/docs', label: 'Docs' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: 'https://github.com', label: 'GitHub', external: true },
-  { href: '/login', label: 'Sign In' },
-];
+import { useEffect, useRef, useState } from 'react';
+import { cn } from '@/lib/cn';
 
 export function NavBar() {
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const onScroll = () => {
+      if (reduceMotion.matches) {
+        setHidden(false);
+        return;
+      }
+      const y = window.scrollY;
+      const delta = y - lastScrollY.current;
+      lastScrollY.current = y;
+
+      if (y < 24) {
+        setHidden(false);
+        return;
+      }
+      if (delta > 8 && y > 72) {
+        setHidden(true);
+      } else if (delta < -8) {
+        setHidden(false);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <motion.header
-      initial={{ opacity: 0, y: -12 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.06]"
+      className={cn(
+        'fixed inset-x-0 top-0 z-50 border-b border-white/[0.06] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
+        hidden && '-translate-y-[calc(100%+2rem)] pointer-events-none'
+      )}
     >
       <div className="glass-warm mx-4 mt-4 rounded-pill px-6 py-3 sm:mx-8 lg:mx-auto lg:max-w-6xl">
         <nav className="flex flex-wrap items-center justify-between gap-4">
@@ -28,30 +55,22 @@ export function NavBar() {
             DEADWOOD
           </Link>
 
-          <ul className="flex flex-wrap items-center gap-6 text-sm font-medium text-dw-muted">
-            {navLinks.map(({ href, label, external }) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="transition-colors hover:text-dw-highlight"
-                  {...(external
-                    ? { target: '_blank', rel: 'noopener noreferrer' }
-                    : {})}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <div className="flex shrink-0 items-center gap-3">
             <Link
-              href="/register"
-              className="inline-flex items-center justify-center rounded-full bg-dw-tan px-6 py-2.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow"
+              href="/login"
+              className="text-sm font-medium text-dw-muted transition-colors hover:text-dw-highlight"
             >
-              Start Running
+              Client Portal
             </Link>
-          </motion.div>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                href="/download"
+                className="inline-flex items-center justify-center rounded-full bg-dw-tan px-6 py-2.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow"
+              >
+                Download
+              </Link>
+            </motion.div>
+          </div>
         </nav>
       </div>
     </motion.header>

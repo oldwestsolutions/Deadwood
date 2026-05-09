@@ -18,7 +18,7 @@ const columns: FooterColumn[] = [
   {
     title: 'Product',
     links: [
-      { href: '/#gitlab-ci', label: 'GitLab CI' },
+      { href: '/#models-as-code', label: 'Models as code' },
       { href: '/#chip-optimization', label: 'Chip optimization' },
       { href: '/#layers-intelligence', label: 'Nine layers' },
       { href: '/#pricing', label: 'Pricing' },

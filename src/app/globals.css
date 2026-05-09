@@ -51,22 +51,82 @@
     color: transparent;
   }
 
+  /**
+   * Warm wood-grain feel: tight vertical striations + broader growth rings,
+   * then soft radial “figure” patches (tan highlight + deeper heartwood).
+   */
   .mesh-layer {
     background-color: var(--dw-bg);
     background-image:
+      repeating-linear-gradient(
+        90.25deg,
+        transparent 0px,
+        transparent 5px,
+        rgba(48, 40, 30, 0.045) 5px,
+        rgba(48, 40, 30, 0.045) 6px
+      ),
+      repeating-linear-gradient(
+        89deg,
+        transparent 0px,
+        transparent 42px,
+        rgba(34, 30, 24, 0.065) 42px,
+        rgba(34, 30, 24, 0.065) 43px
+      ),
+      repeating-linear-gradient(
+        93deg,
+        rgba(255, 248, 235, 0.014) 0px,
+        transparent 2px,
+        transparent 9px
+      ),
       radial-gradient(
         ellipse 120% 80% at 90% -10%,
-        rgba(201, 169, 110, 0.18) 0%,
+        rgba(201, 169, 110, 0.16) 0%,
         transparent 45%
       ),
       radial-gradient(
         ellipse 70% 50% at 15% 60%,
-        rgba(90, 72, 48, 0.35) 0%,
+        rgba(95, 76, 52, 0.33) 0%,
         transparent 50%
       ),
       radial-gradient(
         ellipse 50% 40% at 70% 85%,
-        rgba(42, 38, 32, 0.9) 0%,
+        rgba(42, 38, 32, 0.92) 0%,
+        transparent 55%
+      ),
+      repeating-linear-gradient(
+        96deg,
+        rgba(14, 13, 11, 0.55) 0px,
+        rgba(26, 24, 20, 0.35) 140px,
+        rgba(12, 11, 9, 0.65) 320px
+      );
+  }
+
+  /** Sitewide undertone so flat sections still feel like stained timber */
+  .dw-body-grain {
+    background-color: var(--dw-bg);
+    background-image:
+      repeating-linear-gradient(
+        90.5deg,
+        transparent 0px,
+        transparent 6px,
+        rgba(44, 38, 30, 0.038) 6px,
+        rgba(44, 38, 30, 0.038) 7px
+      ),
+      repeating-linear-gradient(
+        88deg,
+        transparent 0px,
+        transparent 72px,
+        rgba(32, 28, 22, 0.055) 72px,
+        rgba(32, 28, 22, 0.055) 73px
+      ),
+      radial-gradient(
+        ellipse 130% 70% at 50% -20%,
+        rgba(201, 169, 110, 0.055) 0%,
+        transparent 48%
+      ),
+      radial-gradient(
+        ellipse 80% 55% at 0% 85%,
+        rgba(65, 52, 38, 0.14) 0%,
         transparent 55%
       );
   }
@@ -86,8 +146,8 @@
       transform: scale(1) translate3d(0, 0, 0);
     }
     100% {
-      filter: hue-rotate(-6deg) saturate(1.05);
-      transform: scale(1.03) translate3d(-1.2%, 0.8%, 0);
+      filter: hue-rotate(-2deg) saturate(1.03);
+      transform: scale(1.02) translate3d(-0.8%, 0.45%, 0);
     }
   }
 

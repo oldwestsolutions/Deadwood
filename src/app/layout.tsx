@@ -41,7 +41,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </head>
-      <body className="font-sans min-h-full bg-dw-bg text-dw-cream">
+      <body className="dw-body-grain font-sans min-h-full text-dw-cream">
         <AuthProvider>
           {children}
           <Analytics />

@@ -1,14 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import {
+  BeakerIcon,
+  CodeBracketSquareIcon,
+  RocketLaunchIcon,
+} from '@heroicons/react/24/outline';
 import { MotionSection } from '@/components/marketing/MotionSection';
-
-const stages = [
-  { key: 'prepare', label: 'Prepare', hint: 'cache · image · deps' },
-  { key: 'execute', label: 'Execute', hint: 'Snowflake pools' },
-  { key: 'verify', label: 'Verify', hint: 'tests · coverage' },
-  { key: 'publish', label: 'Publish', hint: 'artifacts · chain' },
-];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -19,212 +17,377 @@ const fadeUp = {
   }),
 };
 
+const flowSteps = [
+  {
+    Icon: CodeBracketSquareIcon,
+    title: 'Commit Model Config',
+    body: 'Define your model in `.deadwood.yml`. Push to repo. floppydisk.cc detects the change.',
+  },
+  {
+    Icon: BeakerIcon,
+    title: 'Train & Store on Filecoin',
+    body: 'floppydisk.cc trains the model. Stores weights on Filecoin — immutable, decentralized. Model is versioned and permanent.',
+  },
+  {
+    Icon: RocketLaunchIcon,
+    title: 'Swap Live',
+    body: 'Set `production: true` in one commit. Model swaps live. Avalanche logs the transaction. No downtime. Full auditability.',
+  },
+];
+
 export function UseCases() {
   return (
     <MotionSection
-      id="gitlab-ci"
+      id="models-as-code"
       className="relative flex min-h-[100dvh] min-h-[100vh] flex-col justify-center overflow-hidden py-20 sm:py-24"
     >
-      {/* Atmospheric stack */}
       <div className="pointer-events-none absolute inset-0 bg-dw-bg" aria-hidden />
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_55%_at_15%_20%,rgba(252,109,38,0.07)_0%,transparent_50%),radial-gradient(ellipse_70%_50%_at_85%_75%,rgba(201,169,110,0.12)_0%,transparent_55%),radial-gradient(ellipse_60%_45%_at_50%_100%,rgba(42,38,32,0.95)_0%,transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_55%_at_15%_20%,rgba(201,169,110,0.09)_0%,transparent_50%),radial-gradient(ellipse_70%_50%_at_85%_75%,rgba(201,169,110,0.14)_0%,transparent_55%),radial-gradient(ellipse_60%_45%_at_50%_100%,rgba(42,38,32,0.95)_0%,transparent_60%)]"
         aria-hidden
       />
-      <div className="pointer-events-none absolute inset-0 dw-gitlab-grid opacity-90 dw-gitlab-vignette" aria-hidden />
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FC6D26]/25 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-dw-tan/35 to-transparent"
         aria-hidden
       />
 
       <div className="relative mx-auto w-full max-w-6xl px-6 lg:px-8">
-        <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-12">
-          {/* Copy column */}
-          <div className="lg:col-span-5">
-            <motion.p
-              custom={0}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-              className="font-mono text-[11px] uppercase tracking-[0.24em] text-[#FC6D26]"
-            >
-              Native CI · self-hosted runners
-            </motion.p>
-            <motion.h2
-              custom={1}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-              className="mt-5 font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.08] tracking-tight text-dw-cream"
-            >
-              Ship compute the same way you ship code.
-            </motion.h2>
-            <motion.p
-              custom={2}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-              className="mt-6 text-base leading-relaxed text-dw-muted sm:text-lg"
-            >
-              Wire Deadwood into the workflow your teams already trust: merge requests, protected
-              branches, review apps, and pipeline graphs —{' '}
-              <span className="text-dw-highlight">
-                Python workloads become first-class jobs
-              </span>{' '}
-              with artifacts, logs, and gates you can read without leaving the DevOps surface you
-              live in every day.
-            </motion.p>
+        {/* Section header */}
+        <div className="mx-auto max-w-3xl text-center">
+          <motion.p
+            custom={0}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            className="font-sans text-xs uppercase tracking-[0.22em] text-dw-tan"
+          >
+            Ship models like code, store them like data
+          </motion.p>
+          <motion.p
+            custom={1}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            className="mt-5 font-display text-[clamp(1.35rem,3vw,1.85rem)] leading-tight text-dw-tan"
+          >
+            Models as Code: floppydisk.cc
+          </motion.p>
+          <motion.h2
+            custom={2}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            className="mt-4 font-display text-[clamp(2rem,4.5vw,3rem)] leading-[1.08] tracking-tight text-dw-cream lg:text-[48px]"
+          >
+            Version control for your AI brains.
+          </motion.h2>
+          <motion.p
+            custom={3}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-dw-muted"
+          >
+            Define your models in code. Commit changes. floppydisk.cc versions them. Deploy models to
+            production like you deploy code. Everything stored immutably on Filecoin. Every swap is an
+            Avalanche transaction.
+          </motion.p>
+        </div>
 
-            <motion.ul
-              custom={3}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-              className="mt-8 space-y-4 border-l border-[#FC6D26]/25 pl-6"
-            >
-              {[
-                '`.gitlab-ci.yml` declares runners, stages, and secrets alongside application code.',
-                'Executors stay yours — Docker, shell, or Kubernetes — Deadwood schedules inside those fences.',
-                'Artifacts carry hashes downstream so Monte Carlo, training, and trading backends stay reproducible.',
-              ].map((line) => (
-                <li key={line} className="text-sm leading-relaxed text-dw-muted sm:text-[15px]">
-                  {line}
-                </li>
-              ))}
-            </motion.ul>
+        {/* Two-column: copy + yaml */}
+        <div className="mx-auto mt-16 grid max-w-6xl gap-14 lg:grid-cols-2 lg:items-start lg:gap-16">
+          <motion.div
+            custom={4}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+          >
+            <h3 className="font-display text-[clamp(1.5rem,3vw,2rem)] leading-tight text-dw-cream lg:text-[32px]">
+              Models as code. Storage as immutable.
+            </h3>
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-dw-muted">
+              <p>
+                Your models are code. Version them like code. Write a `.deadwood.yml` file in your repo.
+                Commit it. floppydisk.cc trains the model, versions it, and stores it.
+              </p>
+              <p>
+                When you swap models, one commit changes production. No downtime. No manual deployments.
+                Just git push.
+              </p>
+              <p>
+                Every model version is hashed and stored on Filecoin — decentralized, immutable,
+                permanent. If floppydisk.cc goes down, your models are recoverable. Your model history is
+                forever.
+              </p>
+              <p>
+                Every swap — every change to production — is recorded on Avalanche. You see which model was
+                serving which user at what time. Perfect auditability.
+              </p>
+            </div>
+            <ul className="mt-8 space-y-3 border-l border-dw-tan/25 pl-6 font-sans text-[15px] leading-relaxed text-dw-muted">
+              <li>
+                <span className="text-dw-cream">`.deadwood.yml`</span> declares models, training data, and
+                production rules
+              </li>
+              <li>Models stay in your repo — version controlled, auditable, reproducible</li>
+              <li>floppydisk.cc handles training, versioning, and deployment</li>
+              <li>Filecoin stores model weights — decentralized, immutable, redundant</li>
+              <li>Avalanche logs every swap — transparent, on-chain, verifiable</li>
+            </ul>
+          </motion.div>
 
-            {/* MR strip — illustrative */}
-            <motion.div
-              custom={4}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
-              className="relative mt-10 overflow-hidden rounded-2xl border border-white/[0.07] bg-dw-surface/35 backdrop-blur-md"
-            >
-              <div className="dw-mr-shimmer absolute inset-0 opacity-70" aria-hidden />
-              <div className="relative flex flex-wrap items-center gap-3 px-5 py-4 font-mono text-[11px] sm:text-xs">
-                <span className="rounded-md bg-white/[0.06] px-2 py-1 text-dw-muted">!142</span>
-                <span className="text-dw-cream">feat(runner): snowflake-backed monte_carlo job</span>
-                <span className="ml-auto flex gap-3">
-                  <span className="text-emerald-400/90">+428</span>
-                  <span className="text-rose-400/75">−61</span>
-                </span>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="relative overflow-hidden rounded-[24px] border border-white/[0.08] bg-gradient-to-br from-dw-surface/55 via-dw-bg/95 to-dw-bg p-1 shadow-dw-lift"
+          >
+            <div className="rounded-[22px] border border-dw-tan/12 bg-[#0c0c0a]/92 px-4 py-5 font-mono text-[11px] leading-relaxed backdrop-blur-xl sm:px-5 sm:text-[13px] sm:leading-relaxed">
+              <div className="mb-3 flex items-center gap-2 border-b border-white/[0.06] pb-3">
+                <span className="h-2 w-2 rounded-full bg-dw-tan/85" />
+                <span className="text-[10px] uppercase tracking-wider text-dw-muted">.deadwood.yml</span>
               </div>
-              <div className="relative flex gap-1 border-t border-white/[0.06] px-5 py-2">
-                <span className="h-1.5 flex-1 rounded-full bg-emerald-500/35" />
-                <span className="h-1.5 flex-1 rounded-full bg-emerald-500/55" />
-                <span className="h-1.5 flex-1 rounded-full bg-dw-tan/40" />
-                <span className="h-1.5 flex-1 rounded-full bg-dw-muted/25" />
-              </div>
-            </motion.div>
-          </div>
+              <pre className="max-h-[min(70vh,520px)] overflow-x-auto whitespace-pre text-left">
+                <code className="text-dw-muted">
+                  <span className="text-dw-muted"># Model version control in your repo{'\n\n'}</span>
+                  <span className="text-dw-tan">version</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">1</span>
+                  {'\n\n'}
+                  <span className="text-dw-tan">models</span>
+                  <span className="text-dw-muted">:{'\n'}</span>
+                  {'  '}
+                  <span className="text-dw-cream">trading_taste</span>
+                  <span className="text-dw-muted">:{'\n'}</span>
+                  {'    '}
+                  <span className="text-dw-tan">base</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">&quot;llama-7b&quot;</span>
+                  {'\n'}
+                  {'    '}
+                  <span className="text-dw-tan">training</span>
+                  <span className="text-dw-muted">:{'\n'}</span>
+                  {'      '}
+                  <span className="text-dw-tan">data</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">&quot;trades_2024.csv&quot;</span>
+                  {'\n'}
+                  {'      '}
+                  <span className="text-dw-tan">method</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">&quot;preference_learning&quot;</span>
+                  {'\n'}
+                  {'      '}
+                  <span className="text-dw-tan">epochs</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">3</span>
+                  {'\n'}
+                  {'    '}
+                  <span className="text-dw-tan">production</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">false</span>
+                  {'\n'}
+                  {'  '}
+                  <span className="text-dw-cream">trading_taste_v2</span>
+                  <span className="text-dw-muted">:{'\n'}</span>
+                  {'    '}
+                  <span className="text-dw-tan">base</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">&quot;llama-7b&quot;</span>
+                  {'\n'}
+                  {'    '}
+                  <span className="text-dw-tan">training</span>
+                  <span className="text-dw-muted">:{'\n'}</span>
+                  {'      '}
+                  <span className="text-dw-tan">data</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">&quot;trades_2024_q1.csv&quot;</span>
+                  {'\n'}
+                  {'      '}
+                  <span className="text-dw-tan">method</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">&quot;preference_learning&quot;</span>
+                  {'\n'}
+                  {'      '}
+                  <span className="text-dw-tan">epochs</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">5</span>
+                  {'\n'}
+                  {'    '}
+                  <span className="text-dw-tan">production</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">true</span>
+                  <span className="text-dw-muted"> </span>
+                  <span className="text-dw-muted"># live{'\n'}</span>
+                  {'  '}
+                  <span className="text-dw-cream">gaming_taste</span>
+                  <span className="text-dw-muted">:{'\n'}</span>
+                  {'    '}
+                  <span className="text-dw-tan">base</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">&quot;phi-3&quot;</span>
+                  {'\n'}
+                  {'    '}
+                  <span className="text-dw-tan">training</span>
+                  <span className="text-dw-muted">:{'\n'}</span>
+                  {'      '}
+                  <span className="text-dw-tan">data</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">&quot;game_feedback.jsonl&quot;</span>
+                  {'\n'}
+                  {'      '}
+                  <span className="text-dw-tan">method</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">&quot;contrastive_learning&quot;</span>
+                  {'\n'}
+                  {'      '}
+                  <span className="text-dw-tan">epochs</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">2</span>
+                  {'\n'}
+                  {'    '}
+                  <span className="text-dw-tan">production</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">true</span>
+                  {'\n\n'}
+                  <span className="text-dw-tan">storage</span>
+                  <span className="text-dw-muted">:{'\n'}</span>
+                  {'  '}
+                  <span className="text-dw-tan">filecoin</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">true</span>
+                  {'\n'}
+                  {'  '}
+                  <span className="text-dw-tan">redundancy</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">3</span>
+                  {'\n\n'}
+                  <span className="text-dw-tan">settlement</span>
+                  <span className="text-dw-muted">:{'\n'}</span>
+                  {'  '}
+                  <span className="text-dw-tan">chain</span>
+                  <span className="text-dw-muted">: </span>
+                  <span className="text-dw-highlight">&quot;avalanche&quot;</span>
+                </code>
+              </pre>
+            </div>
+            <p className="border-t border-white/[0.06] bg-dw-surface/25 px-5 py-4 font-sans text-sm leading-relaxed text-dw-muted">
+              Commit this file. floppydisk.cc trains{' '}
+              <span className="text-dw-cream">trading_taste_v2</span>, stores on Filecoin. When you set{' '}
+              <span className="font-mono text-dw-highlight">production: true</span>, your app swaps to the
+              new model — one Avalanche transaction. Live.
+            </p>
+          </motion.div>
+        </div>
 
-          {/* Illustration column */}
-          <div className="relative lg:col-span-7">
+        {/* Three-step flow */}
+        <div className="mx-auto mt-24 max-w-6xl">
+          <div className="relative">
             <motion.div
-              initial={{ opacity: 0, scale: 0.97 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              aria-hidden
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className="relative"
-            >
-              {/* Floating orbit decoration */}
-              <div
-                className="pointer-events-none absolute -right-8 -top-12 h-48 w-48 rounded-full border border-[#FC6D26]/10 opacity-60"
-                style={{
-                  background:
-                    'conic-gradient(from 210deg, transparent 0deg, rgba(252,109,38,0.15) 80deg, transparent 160deg)',
-                }}
-                aria-hidden
-              />
-
-              {/* Pipeline */}
-              <div className="relative rounded-[28px] border border-white/[0.08] bg-gradient-to-br from-dw-surface/55 via-dw-bg/90 to-dw-bg p-6 shadow-dw-lift sm:p-8">
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.06] pb-5 font-mono text-[10px] uppercase tracking-[0.2em] text-dw-muted">
-                  <span>Pipeline · main</span>
-                  <span className="text-emerald-400/85">passed</span>
-                  <span className="text-dw-muted/80">04:18</span>
-                </div>
-
-                <div className="relative mt-8 pb-2">
-                  <div className="absolute left-[12%] right-[12%] top-[22px] hidden h-[5px] overflow-hidden rounded-full sm:block">
-                    <div className="dw-pipeline-track h-full w-full rounded-full opacity-90" />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-y-10 sm:grid-cols-4">
-                    {stages.map((s, i) => (
-                      <div key={s.key} className="relative flex flex-col items-center text-center">
-                        <div
-                          className="dw-runner-ring relative z-[1] flex h-[52px] w-[52px] items-center justify-center rounded-full border border-white/[0.08] bg-gradient-to-br from-dw-surface to-dw-bg font-mono text-[13px] font-semibold text-dw-cream sm:h-14 sm:w-14"
-                          style={{ animationDelay: `${i * 0.35}s` }}
-                        >
-                          {i + 1}
-                        </div>
-                        <p className="mt-4 font-display text-lg text-dw-cream">{s.label}</p>
-                        <p className="mt-1 max-w-[9rem] text-[11px] leading-snug text-dw-muted">
-                          {s.hint}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* YAML panel */}
-                <div className="relative mt-10 rounded-2xl border border-[#FC6D26]/15 bg-[#0c0c0a]/80 px-5 py-5 font-mono text-[11px] leading-relaxed text-dw-muted backdrop-blur-xl sm:text-xs dw-yaml-glow">
-                  <div className="mb-3 flex items-center gap-2 border-b border-white/[0.06] pb-3">
-                    <span className="h-2.5 w-2.5 rounded-full bg-[#FC6D26]/80" />
-                    <span className="text-[10px] uppercase tracking-wider text-dw-muted">
-                      .gitlab-ci.yml
-                    </span>
-                  </div>
-                  <pre className="overflow-x-auto whitespace-pre text-left">
-                    <code>
-                      <span className="text-dw-highlight">deadwood_monte_carlo</span>
-                      {':\n'}
-                      {'  '}
-                      <span className="text-dw-tan">stage</span>
-                      <span className="text-dw-muted">: compute</span>
-                      {'\n'}
-                      {'  '}
-                      <span className="text-dw-tan">tags</span>
-                      <span className="text-dw-muted">: [snowflake, python312]</span>
-                      {'\n'}
-                      {'  '}
-                      <span className="text-dw-tan">script</span>
-                      <span className="text-dw-muted">:</span>
-                      {'\n'}
-                      {'    - '}
-                      <span className="text-dw-cream/90">
-                        python jobs/run_sim.py --paths $PATHS
-                      </span>
-                      {'\n'}
-                      {'  '}
-                      <span className="text-dw-tan">artifacts</span>
-                      <span className="text-dw-muted">:</span>
-                      {'\n'}
-                      {'    '}
-                      <span className="text-dw-tan">reports</span>
-                      <span className="text-dw-muted">: </span>
-                      <span className="text-dw-cream/85">dotenv</span>
-                      {'\n'}
-                      {'    '}
-                      <span className="text-dw-tan">paths</span>
-                      <span className="text-dw-muted">: [manifest.json, logs/]</span>
-                    </code>
-                  </pre>
-                </div>
-
-                <p className="mt-6 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-dw-muted/65">
-                  Merge trains · protected branches · review environments
-                </p>
-              </div>
-            </motion.div>
+              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+              className="pointer-events-none absolute left-[10%] right-[10%] top-[36px] z-0 hidden h-px origin-left bg-gradient-to-r from-dw-tan/15 via-dw-tan/45 to-dw-tan/15 lg:block"
+            />
+            <div className="relative z-[1] flex flex-col gap-10 lg:flex-row lg:items-stretch lg:justify-between lg:gap-4">
+              {flowSteps.map((step, i) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative flex flex-1 flex-col rounded-[22px] border border-white/[0.08] bg-dw-surface/35 p-6 backdrop-blur-[24px] transition-shadow hover:shadow-[0_12px_40px_rgba(201,169,110,0.08)]"
+                >
+                  <step.Icon className="h-10 w-10 text-dw-tan" aria-hidden />
+                  <h4 className="mt-4 font-display text-xl text-dw-cream">{step.title}</h4>
+                  <p className="mt-3 flex-1 font-sans text-sm leading-relaxed text-dw-muted">{step.body}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
+        </div>
+
+        {/* Workflow example */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          className="mx-auto mt-24 max-w-4xl"
+        >
+          <h3 className="font-display text-2xl text-dw-cream">From Code to Production in Minutes</h3>
+          <pre className="mt-8 overflow-x-auto rounded-[20px] border border-white/[0.08] bg-dw-bg/70 p-6 font-mono text-[11px] leading-relaxed text-dw-muted backdrop-blur-[24px] sm:text-xs">
+            {`Step 1: You train locally
+├─ Run: deadwood train --config .deadwood.yml
+├─ Local model trains on your data
+└─ You validate it works
+
+Step 2: You commit
+├─ git add .deadwood.yml
+├─ git commit -m "feat: trading_taste_v2 model, 98.2% accuracy"
+└─ git push
+
+Step 3: floppydisk.cc detects change
+├─ Sees new model definition
+├─ Trains trading_taste_v2 on remote GPUs (optional)
+├─ Stores final weights on Filecoin
+└─ Model is versioned, permanent, immutable
+
+Step 4: You deploy
+├─ Edit .deadwood.yml: set trading_taste_v2 to production: true
+├─ git commit -m "deploy: trading_taste_v2 to production"
+├─ git push
+└─ Your app immediately uses new model (no downtime)
+
+Step 5: Avalanche records it
+├─ Transaction: "user_xyz swapped to trading_taste_v2"
+├─ Timestamp: [timestamp]
+├─ Model hash: [hash]
+└─ Now immutably recorded
+
+Result: New model in production. Perfect auditability. No manual deployment. No infrastructure thinking.`}
+          </pre>
+        </motion.div>
+
+        {/* Callouts */}
+        <div className="mx-auto mt-16 grid max-w-4xl gap-6 md:grid-cols-2">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="rounded-[20px] border border-white/[0.08] bg-dw-surface/40 p-6 text-center backdrop-blur-[24px] transition-shadow hover:shadow-[0_12px_40px_rgba(201,169,110,0.06)]"
+          >
+            <h4 className="font-display text-lg text-dw-cream">Why Filecoin for Model Storage?</h4>
+            <p className="mt-3 font-sans text-sm leading-relaxed text-dw-muted">
+              Model weights are precious. If you lose them, you retrain from scratch. Filecoin ensures your
+              models are stored permanently on decentralized nodes. If one node fails, others have copies.
+              If floppydisk.cc ever shuts down, your models are recoverable. Immutability matters for AI.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="rounded-[20px] border border-white/[0.08] bg-dw-surface/40 p-6 text-center backdrop-blur-[24px] transition-shadow hover:shadow-[0_12px_40px_rgba(201,169,110,0.06)]"
+          >
+            <h4 className="font-display text-lg text-dw-cream">Why Avalanche?</h4>
+            <p className="mt-3 font-sans text-sm leading-relaxed text-dw-muted">
+              Every model swap is a transaction. Every production change is logged. Avalanche gives you fast,
+              cheap, immutable records — which model served which user, and the full history. Perfect
+              auditability. Pennies, not dollars.
+            </p>
+          </motion.div>
         </div>
       </div>
     </MotionSection>
