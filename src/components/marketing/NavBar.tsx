@@ -46,7 +46,8 @@ export function NavBar() {
         hidden && '-translate-y-[calc(100%+2rem)] pointer-events-none'
       )}
     >
-      <div className="glass-warm mx-4 mt-4 max-w-xl rounded-pill px-4 py-2.5 shadow-sm sm:mx-auto sm:mt-5 sm:max-w-2xl sm:px-6 sm:py-3 md:max-w-3xl lg:max-w-4xl xl:max-w-[56rem]">
+      <div className="mt-4 px-3 sm:mt-5 sm:px-5 lg:px-6">
+        <div className="glass-warm mx-auto w-full max-w-screen-2xl rounded-pill px-4 py-2.5 shadow-sm sm:px-6 sm:py-3">
         <nav className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
           <Link
             href="/"
@@ -78,6 +79,7 @@ export function NavBar() {
             </motion.div>
           </div>
         </nav>
+        </div>
       </div>
     </motion.header>
   );
