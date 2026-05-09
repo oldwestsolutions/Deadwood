@@ -3,6 +3,23 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
+const LOOP_STEPS = [
+  'Collect feedback (API, logging)',
+  'Retrain models (serverless, scalable)',
+  'Version checkpoints (full history)',
+  'Promote winners (one-click, or automatic)',
+  'Monitor performance (alerts, metrics)',
+] as const;
+
+const FEATURE_BULLETS = [
+  'Automatic feedback collection (user interactions → training data)',
+  'Serverless model retraining (no infrastructure to manage)',
+  'Checkpoint versioning (full model history, git-like)',
+  'One-click promotion (new model → production)',
+  'Continuous learning (models improve with every use)',
+  'Observable system (metrics, monitoring, audit trail)',
+] as const;
+
 function HeroGlow() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
@@ -76,6 +93,42 @@ export function WeightsCheckpointsContent() {
       </header>
 
       <div className="mx-auto max-w-3xl space-y-16 px-4 py-16 sm:px-6 lg:max-w-[52rem] lg:px-8 lg:py-20">
+        <section id="cybernetic-overview" className="scroll-mt-28 border-b border-white/[0.06] pb-16">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-dw-tan">Cybernetic learning</p>
+          <div className="mt-5 space-y-4 text-sm leading-relaxed text-dw-muted sm:text-[15px]">
+            <p>
+              Deadwood Premium is a cybernetic learning system. It turns your user feedback into self-improving models,
+              automatically.
+            </p>
+            <p>
+              Every user interaction is a learning opportunity. Every rating, every click, every transaction—Deadwood
+              observes, learns, and adapts. Models retrain automatically. Accuracy improves continuously. Your product
+              gets smarter with every use.
+            </p>
+            <p className="font-medium text-dw-cream">Under the hood, Deadwood automates the cybernetic loop:</p>
+            <ol className="list-decimal space-y-2 pl-5 marker:text-dw-tan">
+              {LOOP_STEPS.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
+            <p>
+              You define the feedback signal. Deadwood handles the learning infrastructure. No data pipelines to
+              manage, no DevOps overhead, no manual retraining. Just models that learn from your users, automatically.
+            </p>
+          </div>
+          <ul className="mt-8 space-y-2.5 text-sm leading-relaxed text-dw-muted sm:text-[15px]">
+            {FEATURE_BULLETS.map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="shrink-0 text-dw-tan">→</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-10 font-display text-base italic leading-snug text-dw-tan/95 sm:text-lg">
+            Want to see how it works? Dive into the details of Deadwood&apos;s cybernetic learning system →
+          </p>
+        </section>
+
         <section className="scroll-mt-28" id="cybernetic-core">
           <h2 className="font-display text-2xl text-dw-cream sm:text-3xl">The cybernetic core</h2>
           <p className="mt-4 font-sans text-base leading-relaxed text-dw-muted">
