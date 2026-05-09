@@ -82,7 +82,7 @@ export function UseCases() {
             viewport={{ once: true, margin: '-80px' }}
             className="mt-4 font-display text-[clamp(2rem,4.5vw,3rem)] leading-[1.08] tracking-tight text-dw-cream lg:text-[48px]"
           >
-            Version control for your AI brains.
+            Dust off the old tech.
           </motion.h2>
           <motion.p
             custom={3}
@@ -92,9 +92,11 @@ export function UseCases() {
             viewport={{ once: true, margin: '-80px' }}
             className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-dw-muted"
           >
-            Define your models in code. Commit changes. floppydisk.cc versions them. Deploy models to
-            production like you deploy code. Everything stored immutably on Filecoin. Every swap is an
-            Avalanche transaction.
+            Define your models in the same place you define everything else: your repo. Give each variant a
+            name, wire up training data, pick a method and epochs, and spell out what is experimental versus
+            production—all in a config file your team can diff, review, and approve like any other change.
+            That definition becomes the contract floppydisk.cc trains against, so every revision stays tied to
+            a commit instead of a one-off notebook or a dashboard nobody remembers how to reproduce.
           </motion.p>
         </div>
 
@@ -148,18 +150,20 @@ export function UseCases() {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             className="relative overflow-hidden rounded-[24px] border border-white/[0.08] bg-gradient-to-br from-dw-surface/55 via-dw-bg/95 to-dw-bg p-1 shadow-dw-lift"
           >
-            <div className="rounded-[22px] border border-dw-tan/12 bg-[#0c0c0a]/92 px-4 py-5 font-mono text-[11px] leading-relaxed backdrop-blur-xl sm:px-5 sm:text-[13px] sm:leading-relaxed">
+            <div className="rounded-[22px] border border-dw-tan/12 bg-[#0c0c0a]/92 px-4 py-4 font-mono text-[10px] leading-relaxed backdrop-blur-xl sm:px-5 sm:py-5 sm:text-[11px]">
               <div className="mb-3 flex items-center gap-2 border-b border-white/[0.06] pb-3">
                 <span className="h-2 w-2 rounded-full bg-dw-tan/85" />
-                <span className="text-[10px] uppercase tracking-wider text-dw-muted">.deadwood.yml</span>
+                <span className="text-[10px] uppercase tracking-wider text-dw-muted sm:text-[11px]">
+                  .deadwood.yml
+                </span>
               </div>
-              <pre className="max-h-[min(70vh,520px)] overflow-x-auto whitespace-pre text-left">
+              <pre className="max-h-[min(82vh,620px)] overflow-x-auto overflow-y-auto whitespace-pre text-left [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-dw-tan/20">
                 <code className="text-dw-muted">
-                  <span className="text-dw-muted"># Model version control in your repo{'\n\n'}</span>
+                  <span className="text-dw-muted"># Model version control in your repo{'\n'}</span>
                   <span className="text-dw-tan">version</span>
                   <span className="text-dw-muted">: </span>
                   <span className="text-dw-highlight">1</span>
-                  {'\n\n'}
+                  {'\n'}
                   <span className="text-dw-tan">models</span>
                   <span className="text-dw-muted">:{'\n'}</span>
                   {'  '}
@@ -255,7 +259,7 @@ export function UseCases() {
                   <span className="text-dw-tan">production</span>
                   <span className="text-dw-muted">: </span>
                   <span className="text-dw-highlight">true</span>
-                  {'\n\n'}
+                  {'\n'}
                   <span className="text-dw-tan">storage</span>
                   <span className="text-dw-muted">:{'\n'}</span>
                   {'  '}
@@ -267,7 +271,7 @@ export function UseCases() {
                   <span className="text-dw-tan">redundancy</span>
                   <span className="text-dw-muted">: </span>
                   <span className="text-dw-highlight">3</span>
-                  {'\n\n'}
+                  {'\n'}
                   <span className="text-dw-tan">settlement</span>
                   <span className="text-dw-muted">:{'\n'}</span>
                   {'  '}
@@ -277,7 +281,7 @@ export function UseCases() {
                 </code>
               </pre>
             </div>
-            <p className="border-t border-white/[0.06] bg-dw-surface/25 px-5 py-4 font-sans text-sm leading-relaxed text-dw-muted">
+            <p className="border-t border-white/[0.06] bg-dw-surface/25 px-4 py-3.5 font-sans text-sm leading-relaxed text-dw-muted sm:px-5">
               Commit this file. floppydisk.cc trains{' '}
               <span className="text-dw-cream">trading_taste_v2</span>, stores on Filecoin. When you set{' '}
               <span className="font-mono text-dw-highlight">production: true</span>, your app swaps to the
