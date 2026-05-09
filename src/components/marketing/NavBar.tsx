@@ -51,7 +51,7 @@ export function NavBar() {
         <nav className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
           <Link
             href="/"
-            className="min-h-[44px] min-w-[44px] font-display text-lg tracking-[0.28em] text-dw-tan sm:text-xl sm:tracking-[0.35em] md:text-2xl"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center font-display text-lg leading-none tracking-[0.28em] text-dw-tan -mr-[0.28em] sm:text-xl sm:tracking-[0.35em] sm:-mr-[0.35em] md:text-2xl"
           >
             DEADWOOD
           </Link>
