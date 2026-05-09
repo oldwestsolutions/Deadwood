@@ -200,30 +200,29 @@ export function AccountSignupPromo({ className }: AccountSignupPromoProps) {
       <PromoSnowflakeAnimations />
       <div className="relative z-[1] flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
         <div className="max-w-xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-dw-tan">Create your account</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-dw-tan">Snowflake Premium</p>
           <p className="mt-3 font-display text-2xl leading-snug text-dw-cream sm:text-[1.75rem]">
-            One login for training runs, model versions, and production routing—without wiring billing and access by hand.
+            One login for trains, models, and routing—tier-managed billing and access.
           </p>
           <p className="mt-4 text-sm leading-relaxed text-dw-muted">
-            Sign up to connect repos, issue API keys, and track what shipped—same workspace your team uses from first
-            local train through promotion.
+            Connect repos, issue keys, and ship versions from the same workspace—local experiments through production.
           </p>
         </div>
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
-              href="/register"
+              href="/snowflake-premium"
               className="inline-flex items-center justify-center rounded-full bg-dw-tan px-8 py-3.5 text-center text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow"
             >
-              Create account
+              Snowflake Premium
             </Link>
           </motion.div>
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Link
-              href="/login"
+              href="/faq"
               className="inline-flex items-center justify-center rounded-full border border-dw-tan/35 px-8 py-3.5 text-center text-sm font-semibold text-dw-cream transition-colors hover:border-dw-highlight hover:bg-white/[0.04]"
             >
-              Sign in
+              FAQ
             </Link>
           </motion.div>
         </div>
