@@ -64,53 +64,19 @@ export function UseCases() {
           >
             Ship models like code, store them like data
           </motion.p>
-          <motion.p
-            custom={1}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            className="mt-5 font-display text-[clamp(1.35rem,3vw,1.85rem)] leading-tight text-dw-tan"
-          >
-            Models as Code: floppydisk.cc
-          </motion.p>
-          <motion.h2
-            custom={2}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            className="mt-4 font-display text-[clamp(2rem,4.5vw,3rem)] leading-[1.08] tracking-tight text-dw-cream lg:text-[48px]"
-          >
-            Dust off the old tech.
-          </motion.h2>
-          <motion.p
-            custom={3}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-dw-muted"
-          >
-            Define your models in the same place you define everything else: your repo. Give each variant a
-            name, wire up training data, pick a method and epochs, and spell out what is experimental versus
-            production—all in a config file your team can diff, review, and approve like any other change.
-            That definition becomes the contract floppydisk.cc trains against, so every revision stays tied to
-            a commit instead of a one-off notebook or a dashboard nobody remembers how to reproduce.
-          </motion.p>
         </div>
 
         {/* Two-column: copy + yaml */}
         <div className="mx-auto mt-16 grid max-w-6xl gap-14 lg:grid-cols-2 lg:items-start lg:gap-16">
           <motion.div
-            custom={4}
+            custom={1}
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
           >
             <h3 className="font-display text-[clamp(1.5rem,3vw,2rem)] leading-tight text-dw-cream lg:text-[32px]">
-              Models as code. Storage as immutable.
+              Define Your Models
             </h3>
             <div className="mt-6 space-y-4 text-base leading-relaxed text-dw-muted">
               <p>
