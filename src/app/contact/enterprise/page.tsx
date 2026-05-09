@@ -23,7 +23,7 @@ export default function EnterpriseContactPage() {
             Contact sales
           </Link>
           <Link
-            href="/#pricing"
+            href="/pricing"
             className="inline-flex rounded-full border border-dw-tan/40 px-8 py-3.5 text-sm font-semibold text-dw-cream hover:border-dw-highlight hover:bg-white/[0.04]"
           >
             View pricing

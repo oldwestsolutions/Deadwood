@@ -50,10 +50,10 @@ export function Hero() {
           <div className="flex flex-wrap gap-4">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="/snowflake-premium"
+                href="/the-blueprint"
                 className="inline-flex rounded-full bg-dw-tan px-6 py-3.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow sm:px-8"
               >
-                Snowflake Premium
+                The Blueprint
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>

@@ -5,7 +5,7 @@ import { useId } from 'react';
 import { motion } from 'framer-motion';
 import { MotionSection } from '@/components/marketing/MotionSection';
 
-/** Pixel scale inside the faux browser game */
+/** Pixel step for anchor / sand details */
 const U = 4;
 
 function PremiumIllustration() {
@@ -13,6 +13,7 @@ function PremiumIllustration() {
   const clipId = `browser-game-${uid}`;
   const skyId = `browser-sky-${uid}`;
   const chromeId = `browser-chrome-${uid}`;
+  const waterGradId = `browser-water-${uid}`;
 
   const win = { x: 8, y: 8, w: 432, h: 296, rx: 14 };
   const pad = 10;
@@ -27,29 +28,27 @@ function PremiumIllustration() {
     rx: 8,
   };
 
-  const stars = Array.from({ length: 52 }, (_, i) => ({
-    x: game.x + 6 + ((i * 97) % Math.max(1, game.w - 14)),
-    y: game.y + 8 + ((i * 53) % Math.max(1, game.h - 88)),
-    s: 1 + (i % 2),
-    o: 0.25 + (i % 4) * 0.15,
-  }));
-
   const gx0 = game.x;
   const gy0 = game.y;
   const gh = game.h;
   const gw = game.w;
-  const groundY = gy0 + gh - 44;
 
-  const goalBlocks: [number, number, string][] = [
-    [12, 0, '#9ECADF'],
-    [8, U, '#7BA7BC'],
-    [16, U, '#7BA7BC'],
-    [8, U * 2, '#5A89A0'],
-    [12, U * 2, '#E0F5FF'],
-    [16, U * 2, '#5A89A0'],
-    [10, U * 3, '#4a7384'],
-    [14, U * 3, '#4a7384'],
-  ];
+  const sandTop = gy0 + gh * 0.52;
+  const waterTop = gy0 + gh * 0.14;
+
+  const stars = Array.from({ length: 28 }, (_, i) => ({
+    x: gx0 + 8 + ((i * 91) % Math.max(1, gw - 16)),
+    y: gy0 + 6 + ((i * 47) % Math.max(1, Math.floor(sandTop - gy0) - 24)),
+    s: 1 + (i % 2),
+    o: 0.2 + (i % 5) * 0.12,
+  }));
+
+  const anchorCx = gx0 + gw * 0.5;
+  const anchorCy = sandTop + 10;
+  const steel = '#9aa3ad';
+  const steelMid = '#6f7782';
+  const steelDark = '#4a5159';
+  const steelHi = '#c5ccd4';
 
   return (
     <svg
@@ -68,6 +67,11 @@ function PremiumIllustration() {
         <linearGradient id={chromeId} x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="#3a3834" />
           <stop offset="100%" stopColor="#242220" />
+        </linearGradient>
+        <linearGradient id={waterGradId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#335f78" />
+          <stop offset="45%" stopColor="#254a62" />
+          <stop offset="100%" stopColor="#183548" />
         </linearGradient>
         <clipPath id={clipId}>
           <rect x={game.x} y={game.y} width={game.w} height={game.h} rx={game.rx} />
@@ -171,138 +175,142 @@ function PremiumIllustration() {
           <rect key={i} x={s.x} y={s.y} width={s.s} height={s.s} fill="#E0F5FF" opacity={s.o} rx={0.5} />
         ))}
 
-        <g opacity={0.35}>
-          {[0, 1, 2].map((i) => (
+        <rect x={gx0} y={waterTop - 2} width={gw} height={8} fill="#243d52" opacity={0.55} />
+
+        <rect x={gx0} y={waterTop} width={gw} height={sandTop - waterTop} fill={`url(#${waterGradId})`} />
+
+        <motion.g
+          animate={{ x: [0, -20, 0] }}
+          transition={{ duration: 7.5, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          {[0, 1, 2, 3].map((i) => (
             <rect
               key={i}
-              x={gx0 + gw * (0.05 + i * 0.31)}
-              y={gy0 + 24 + (i % 2) * 14}
-              width={Math.min(124, gw * 0.26)}
-              height={16}
-              rx={2}
-              fill="#243d52"
+              x={gx0 - 24 + i * 28}
+              y={waterTop + 10 + i * 16}
+              width={gw + 120}
+              height={4 + (i % 2)}
+              fill="#4a86a8"
+              opacity={0.22 - i * 0.035}
             />
           ))}
-        </g>
+        </motion.g>
+        <motion.g
+          animate={{ x: [0, 16, 0] }}
+          transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          {[0, 1].map((i) => (
+            <rect
+              key={i}
+              x={gx0 - 40 + i * 50}
+              y={sandTop - 18 - i * 10}
+              width={gw + 100}
+              height={3}
+              fill="#7eb8d4"
+              opacity={0.12}
+            />
+          ))}
+        </motion.g>
 
-        <g>
+        {/* Sand */}
+        <rect x={gx0} y={sandTop} width={gw} height={gy0 + gh - sandTop} fill="#c9a882" />
+        <rect x={gx0} y={sandTop} width={gw} height={10} fill="#a88562" opacity={0.55} />
+        {Array.from({ length: Math.ceil(gw / 8) }, (_, i) => (
           <rect
-            x={gx0 + gw * 0.06}
-            y={gy0 + gh * 0.38}
-            width={gw * 0.32}
-            height={12}
-            rx={2}
-            fill="#4a4336"
-            stroke="#C9A96E"
-            strokeOpacity={0.25}
-          />
-          <rect
-            x={gx0 + gw * 0.54}
-            y={gy0 + gh * 0.3}
-            width={gw * 0.28}
-            height={12}
-            rx={2}
-            fill="#4a4336"
-            stroke="#C9A96E"
-            strokeOpacity={0.25}
-          />
-        </g>
-
-        <rect x={gx0} y={groundY} width={gw} height={gy0 + gh - groundY} fill="#2d5234" />
-        {Array.from({ length: Math.ceil(gw / 10) }, (_, i) => (
-          <rect
-            key={i}
-            x={gx0 + i * 10}
-            y={groundY + ((i % 2) + (i % 3)) * 4}
-            width={6}
-            height={4}
-            fill="#3d6b45"
-            opacity={0.65}
+            key={`s-${i}`}
+            x={gx0 + i * 8 + ((i * 3) % 5)}
+            y={sandTop + 14 + ((i * 7) % 28)}
+            width={5}
+            height={3}
+            fill="#8f704e"
+            opacity={0.35}
           />
         ))}
 
-        {/* Goal: warehouse stack + SF badge */}
-        <g transform={`translate(${gx0 + gw - 104}, ${groundY - 56})`}>
-          <text x={4} y={-6} fill="#C9A96E" fontSize={10} fontFamily="ui-monospace, monospace" opacity={0.9}>
-            SF
-          </text>
-          {goalBlocks.map(([x, y, c], i) => (
-            <rect key={i} x={Number(x)} y={Number(y)} width={U * 2 - 1} height={U * 2 - 1} fill={String(c)} />
-          ))}
+        {/* Subtle drifting sand sparkles */}
+        {[0, 1, 2, 3, 4].map((i) => {
+          const bx = gx0 + 20 + ((i * 83) % Math.max(1, gw - 40));
+          const by = sandTop + 20 + (i % 3) * 16;
+          return (
+            <g key={`g-${i}`} transform={`translate(${bx}, ${by})`}>
+              <motion.rect
+                width={3}
+                height={2}
+                fill="#e8d4b8"
+                animate={{ y: [0, -2.5, 0], opacity: [0.22, 0.5, 0.22] }}
+                transition={{
+                  duration: 3.2 + i * 0.4,
+                  delay: i * 0.35,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+              />
+            </g>
+          );
+        })}
+
+        <g transform={`translate(${anchorCx}, ${anchorCy})`}>
+          <ellipse cx={0} cy={20} rx={40} ry={9} fill="#000000" opacity={0.16} />
+          <motion.g
+            animate={{ rotate: [-2.6, 2.6, -2.6], y: [0, 2.5, 0] }}
+            transition={{ duration: 5.4, repeat: Infinity, ease: 'easeInOut' }}
+            style={{ transformOrigin: '0px 20px' }}
+          >
+            {/* Flukes & crown (buried in sand) */}
+            <rect x={-9 * U} y={10} width={5 * U} height={2 * U} fill={steelDark} />
+            <rect x={4 * U} y={10} width={5 * U} height={2 * U} fill={steelDark} />
+            <rect x={-11 * U} y={12} width={4 * U} height={2 * U} fill={steelDark} />
+            <rect x={7 * U} y={12} width={4 * U} height={2 * U} fill={steelDark} />
+            <rect x={-6 * U} y={4} width={3 * U} height={4 * U} fill={steelMid} />
+            <rect x={3 * U} y={4} width={3 * U} height={4 * U} fill={steelMid} />
+            {/* Shank */}
+            <rect x={-U} y={-50} width={2 * U} height={58} fill={steelDark} />
+            <rect x={-U + 1} y={-48} width={2 * U - 2} height={54} fill={steelMid} />
+            {/* Stock */}
+            <rect x={-8 * U} y={-52} width={16 * U} height={2 * U} fill={steel} />
+            <rect x={-8 * U} y={-50} width={16 * U} height={U} fill={steelHi} opacity={0.45} />
+            {/* Ring head */}
+            <rect x={-2 * U} y={-64} width={4 * U} height={2 * U} fill={steelHi} />
+            <rect x={-3 * U} y={-62} width={6 * U} height={2 * U} fill={steelHi} />
+            <rect x={-2 * U} y={-60} width={4 * U} height={2 * U} fill={steelMid} />
+            <rect x={-U} y={-66} width={2 * U} height={2 * U} fill={steelDark} />
+          </motion.g>
         </g>
 
-        {/* Runner sprite */}
-        <g transform={`translate(${gx0 + gw * 0.13}, ${groundY - 36})`}>
-          <rect x={0} y={8} width={18} height={6} fill="#C9A96E" rx={1} />
-          <rect x={4} y={0} width={10} height={10} fill="#D4B896" rx={1} />
-          <rect x={6} y={2} width={3} height={3} fill="#1a1814" />
-          <rect x={11} y={2} width={3} height={3} fill="#1a1814" />
-          <rect x={2} y={14} width={5} height={10} fill="#3d5a66" />
-          <rect x={11} y={14} width={5} height={10} fill="#3d5a66" />
-          <rect x={-2} y={12} width={6} height={4} fill="#D4B896" rx={1} />
-        </g>
-
-        <g opacity={0.045} stroke="#fff" strokeWidth={0.6}>
-          {Array.from({ length: Math.floor(gh / 4) }, (_, i) => (
-            <line key={i} x1={gx0} y1={gy0 + i * 4} x2={gx0 + gw} y2={gy0 + i * 4} />
+        <g opacity={0.04} stroke="#fff" strokeWidth={0.6}>
+          {Array.from({ length: Math.floor(gh / 5) }, (_, i) => (
+            <line key={i} x1={gx0} y1={gy0 + i * 5} x2={gx0 + gw} y2={gy0 + i * 5} />
           ))}
         </g>
 
         <rect
           x={gx0 + 10}
-          y={gy0 + 10}
+          y={gy0 + gh - 50}
           width={gw - 20}
-          height={28}
-          rx={4}
+          height={34}
+          rx={5}
           fill="#0a0a08"
-          fillOpacity={0.72}
+          fillOpacity={0.78}
           stroke="#C9A96E"
-          strokeOpacity={0.2}
-        />
-        <text x={gx0 + 20} y={gy0 + 28} fill="#E0F5FF" fontSize={11} fontFamily="ui-monospace, monospace">
-          SCORE 94120 · EPOCH 12/24 · API 62.4K
-        </text>
-
-        <rect
-          x={gx0 + gw * 0.06}
-          y={gy0 + gh - 58}
-          width={gw * 0.88}
-          height={44}
-          rx={6}
-          fill="#0c0b09"
-          fillOpacity={0.88}
-          stroke="#C9A96E"
-          strokeOpacity={0.35}
-        />
-        <text x={gx0 + gw * 0.1} y={gy0 + gh - 38} fill="#EDE9E0" fontSize={11} fontFamily="ui-monospace, monospace">
-          TRAINING RUN… Snowflake query pool
-        </text>
-        <rect
-          x={gx0 + gw * 0.1}
-          y={gy0 + gh - 28}
-          width={gw * 0.8}
-          height={10}
-          rx={2}
-          fill="#1a1814"
-          stroke="#33302c"
-        />
-        <rect
-          x={gx0 + gw * 0.1 + 2}
-          y={gy0 + gh - 26}
-          width={(gw * 0.8 - 4) * 0.72}
-          height={6}
-          rx={1}
-          fill="#4a9f6e"
+          strokeOpacity={0.22}
         />
         <text
-          x={gx0 + gw * 0.9 - 8}
-          y={gy0 + gh - 19}
-          fill="#7A7570"
+          x={gx0 + 22}
+          y={gy0 + gh - 32}
+          fill="#E0F5FF"
           fontSize={10}
           fontFamily="ui-monospace, monospace"
-          textAnchor="end"
         >
-          82%
+          CHECKPOINT ARTIFACTS · learned tensors · commit lineage
+        </text>
+        <text
+          x={gx0 + 22}
+          y={gy0 + gh - 18}
+          fill="#7A7570"
+          fontSize={9}
+          fontFamily="ui-monospace, monospace"
+        >
+          Hashes bind tensors to commits—inference follows the promoted checkpoint.
         </text>
       </g>
 
@@ -323,6 +331,34 @@ export function ConsequentialLearning() {
     <MotionSection id="premium" className="relative py-section">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 lg:items-start">
+          <div className="relative lg:col-span-7">
+            <motion.figure
+              initial={{ opacity: 0, rotate: -0.4 }}
+              whileInView={{ opacity: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.85 }}
+              className="relative overflow-hidden rounded-[28px] border border-dw-tan/15 bg-gradient-to-br from-dw-tan/[0.07] via-dw-surface/90 to-dw-bg p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_24px_80px_rgba(0,0,0,0.35)] sm:p-7 lg:mr-8 lg:-translate-y-4"
+            >
+              <div
+                className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,rgba(201,169,110,0.12)_0%,transparent_68%)] blur-2xl"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,rgba(212,184,150,0.08)_0%,transparent_65%)] blur-2xl"
+                aria-hidden
+              />
+              <div className="relative flex min-h-[260px] items-stretch py-1 sm:min-h-[300px] sm:py-2">
+                <PremiumIllustration />
+              </div>
+              <figcaption className="sr-only">
+                Pixel illustration inside a browser window: night sky, animated ocean waves, beach sand, and an anchor
+                partially buried in the sand with gentle motion. The tab reads Deadwood Software; the URL bar shows the
+                Premium training URL. A status strip summarizes checkpoint artifacts as learned tensors with commit
+                lineage and promotion-driven inference routing.
+              </figcaption>
+            </motion.figure>
+          </div>
+
           <div className="lg:col-span-5 lg:pt-6">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-dw-muted">
               Premium
@@ -342,33 +378,6 @@ export function ConsequentialLearning() {
                 Get Premium
               </Link>
             </motion.div>
-          </div>
-
-          <div className="relative lg:col-span-7">
-            <motion.figure
-              initial={{ opacity: 0, rotate: -0.4 }}
-              whileInView={{ opacity: 1, rotate: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.85 }}
-              className="relative overflow-hidden rounded-[28px] border border-dw-tan/15 bg-gradient-to-br from-dw-tan/[0.07] via-dw-surface/90 to-dw-bg p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_24px_80px_rgba(0,0,0,0.35)] sm:p-7 lg:ml-8 lg:-translate-y-4"
-            >
-              <div
-                className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,rgba(201,169,110,0.12)_0%,transparent_68%)] blur-2xl"
-                aria-hidden
-              />
-              <div
-                className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-[radial-gradient(circle_at_center,rgba(212,184,150,0.08)_0%,transparent_65%)] blur-2xl"
-                aria-hidden
-              />
-              <div className="relative flex min-h-[260px] items-stretch py-1 sm:min-h-[300px] sm:py-2">
-                <PremiumIllustration />
-              </div>
-              <figcaption className="sr-only">
-                Illustration of a web browser window running a retro pixel training simulation: URL bar, tab titled Deadwood
-                Software, in-game HUD with score and epoch counter, a runner sprite, Snowflake-style warehouse goal, and a
-                training progress bar for Premium.
-              </figcaption>
-            </motion.figure>
           </div>
         </div>
       </div>

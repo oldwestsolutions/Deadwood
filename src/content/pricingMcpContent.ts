@@ -67,7 +67,7 @@ export const pricingComparisonRows: PricingComparisonRow[] = [
     enterprise: 'Dedicated Snowflake cluster (unlimited queries included)',
     highlight: true,
     tooltip:
-      'Premium uses your Snowflake account. For dedicated clusters and negotiated query envelopes, see Enterprise and the Snowflake Premium product page.',
+      'Premium uses your Snowflake account. For dedicated clusters and negotiated query envelopes, see Enterprise—and The Blueprint for warehouse-native training at scale.',
   },
   {
     feature: 'Training speed',

@@ -36,7 +36,7 @@ const fadeUp = {
 const glassCard =
   'rounded-[24px] border border-white/[0.09] bg-dw-surface/40 p-6 shadow-dw-lift backdrop-blur-xl sm:p-8';
 
-export function SnowflakePremiumOffering() {
+export function TheBlueprintOffering() {
   return (
     <>
       <SnowflakeHero />
@@ -81,14 +81,14 @@ function SnowflakeHero() {
           className="space-y-8"
         >
           <motion.p variants={fadeUp} custom={0} className="font-sans text-xs uppercase tracking-[0.22em] text-dw-tan">
-            Enterprise data at scale
+            Warehouse-native blueprint
           </motion.p>
           <motion.h1
             variants={fadeUp}
             custom={1}
             className="font-display text-[clamp(2.35rem,6vw,4.5rem)] leading-[1.06] tracking-tight text-dw-cream"
           >
-            Snowflake Premium.
+            The Blueprint.
             <span className="mt-2 block">Train on petabytes.</span>
             <span className="mt-1 block text-dw-tan">Pay for efficiency.</span>
           </motion.h1>
@@ -98,21 +98,21 @@ function SnowflakeHero() {
           </motion.p>
           <motion.p variants={fadeUp} custom={3} className="max-w-xl font-sans text-base leading-relaxed text-dw-muted">
             You may host hundreds of billions of trades, tens of billions of transactions, or petabytes of clinical
-            history. Moving it to train models breaks compliance, blows egress budgets, and stalls teams. Snowflake
-            Premium keeps data authoritative in your warehouse while Deadwood runs governed training queries,
+            history. Moving it to train models breaks compliance, blows egress budgets, and stalls teams. The Blueprint
+            keeps data authoritative in your warehouse while Deadwood runs governed training queries,
             orchestrates jobs, and ships checkpoints back to your API. Snowflake consumption tiers improve as scale
             grows—so per-unit economics can improve while models improve. That is the flywheel finance and product
             both care about.
           </motion.p>
           <motion.div variants={fadeUp} custom={4} className="flex flex-wrap gap-4">
             <Link
-              href="#snowflake-solution"
+              href="#blueprint-solution"
               className="inline-flex rounded-full bg-dw-tan px-8 py-3.5 text-sm font-semibold text-dw-bg shadow-dw-glow-sm transition-shadow hover:shadow-dw-glow"
             >
-              Explore Snowflake Premium
+              Explore The Blueprint
             </Link>
             <Link
-              href="#snowflake-calculator"
+              href="#blueprint-calculator"
               className="inline-flex rounded-full border border-dw-tan/40 px-8 py-3.5 text-sm font-semibold text-dw-cream transition-colors hover:border-dw-highlight hover:bg-white/[0.04]"
             >
               See pricing calculator
@@ -235,7 +235,7 @@ Option C — generic ML SaaS + workarounds
 └ Consulting                 ~$50K / yr`}
             </pre>
             <p className="mt-4 font-sans text-sm text-dw-muted">
-              Snowflake Premium is aimed at teams who refuse those defaults—keeping queries inside Snowflake while Deadwood
+              The Blueprint is aimed at teams who refuse those defaults—keeping queries inside Snowflake while Deadwood
               owns orchestration, checkpoints, and inference semantics.
             </p>
           </div>
@@ -247,7 +247,7 @@ Option C — generic ML SaaS + workarounds
 
 function SnowflakeSolution() {
   return (
-    <section id="snowflake-solution" className="border-t border-white/[0.06] bg-dw-bg py-section scroll-mt-28">
+    <section id="blueprint-solution" className="border-t border-white/[0.06] bg-dw-bg py-section scroll-mt-28">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <h2 className="mx-auto max-w-3xl text-center font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">
           Deadwood plus Snowflake equals train where your data lives
@@ -278,7 +278,7 @@ Outcomes
             {`Traditional export path
 Data → bulk extract → object store → train
 
-Snowflake Premium path
+The Blueprint path
 Snowflake → Deadwood query plane → in-place training → API-ready models`}
           </pre>
         </div>
@@ -377,7 +377,7 @@ function SnowflakeUseCases() {
       problem:
         'Managers want personalization against full tape history. Exports torch compliance budgets and Sharpe wins disappear under latency.',
       solution:
-        'Snowflake Premium trains manager-scoped models directly in the warehouse—styles, risk envelopes, and conviction profiles stay encoded without shipping the tape.',
+        'The Blueprint trains manager-scoped models directly in the warehouse—styles, risk envelopes, and conviction profiles stay encoded without shipping the tape.',
       bullets: ['Training footprint: full-history batches', 'Schedule: monthly refresh windows (configurable)', ' economics align with Snowflake tiers—not surprise egress'],
     },
     {
@@ -416,7 +416,7 @@ function SnowflakeUseCases() {
     <section className="border-t border-white/[0.06] bg-dw-bg py-section">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">What enterprises do with Snowflake Premium</h2>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">What enterprises do with The Blueprint</h2>
           <p className="mt-4 font-sans text-base text-dw-muted">
             Applications that only make sense when the warehouse—not a CSV dump—is the source of truth.
           </p>
@@ -556,7 +556,7 @@ function SnowflakeSecurity() {
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">Security and compliance at warehouse scale</h2>
           <p className="mt-4 font-sans text-base text-dw-muted">
-            Snowflake Premium keeps sensitive planes aligned—legal stays happy, engineers stay shipping.
+            The Blueprint keeps sensitive planes aligned—legal stays happy, engineers stay shipping.
           </p>
         </div>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -700,10 +700,10 @@ function SnowflakeCalculator() {
   }, [freqIdx, models, sizeIdx]);
 
   return (
-    <section id="snowflake-calculator" className="border-t border-white/[0.06] bg-dw-bg py-section scroll-mt-28">
+    <section id="blueprint-calculator" className="border-t border-white/[0.06] bg-dw-bg py-section scroll-mt-28">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">Estimate Snowflake Premium economics</h2>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">Economics calculator · The Blueprint</h2>
           <p className="mt-4 font-sans text-base text-dw-muted">
             Interactive planner—outputs are directional. Final numbers come from joint telemetry during onboarding.
           </p>
@@ -791,7 +791,7 @@ function SnowflakeCompareMatrix() {
     <section className="border-t border-white/[0.06] bg-dw-bg py-section">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">Snowflake Premium versus alternatives</h2>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">The Blueprint versus alternatives</h2>
           <p className="mt-4 font-sans text-base text-dw-muted">
             Executive framing—every alternative leaks either data, calendar time, or CFO credibility at petabyte scale.
           </p>
@@ -803,7 +803,7 @@ function SnowflakeCompareMatrix() {
                 <th className="px-4 py-3">Capability</th>
                 <th className="px-4 py-3">DIY cloud</th>
                 <th className="px-4 py-3">Generic ML SaaS</th>
-                <th className="px-4 py-3 text-dw-tan">Snowflake Premium</th>
+                <th className="px-4 py-3 text-dw-tan">The Blueprint</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.05] text-dw-muted">
@@ -887,7 +887,7 @@ const faqItems: { q: string; a: string }[] = [
     a: 'Dashboards tie personalization lift hypotheses to Snowflake credits + Deadwood envelopes so ROI math stays traceable.',
   },
   {
-    q: 'Can MSP partners operate Snowflake Premium?',
+    q: 'Can MSP partners operate The Blueprint?',
     a: 'Partner-led operations are supported under Autonomous statements with joint governance checkpoints.',
   },
 ];
@@ -927,7 +927,7 @@ function SnowflakeCaseStudies() {
       challenge:
         'Personalization stalled behind export approvals; Sharpe uplift hypotheses could not be tested on complete tape history.',
       outcome:
-        'Snowflake Premium trained manager-local models in-region; promotion latency dropped from quarters to weeks.',
+        'The Blueprint trained manager-local models in-region; promotion latency dropped from quarters to weeks.',
       metrics: ['Risk-reviewed connectors in under six weeks', 'Snowflake spend tracked beside Deadwood orchestration'],
     },
     {
@@ -954,7 +954,7 @@ function SnowflakeCaseStudies() {
     <section className="border-t border-white/[0.06] bg-dw-bg py-section">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">How enterprises adopt Snowflake Premium</h2>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">How enterprises adopt The Blueprint</h2>
           <p className="mt-4 font-sans text-sm text-dw-muted">
             Illustrative composites—swap in your logos once legal clears references.
           </p>
@@ -990,7 +990,7 @@ function SnowflakePricingTiers() {
     {
       name: 'Snowflake Starter',
       price: '$500 / mo',
-      for: 'Teams validating Premium with sub–10B-row batches',
+      for: 'Teams validating The Blueprint on sub–10B-row batches',
       bullets: [
         'Read-only integration',
         'Up to five trainings / month',
@@ -1027,10 +1027,10 @@ function SnowflakePricingTiers() {
   ];
 
   return (
-    <section id="snowflake-pricing" className="border-t border-white/[0.06] bg-dw-bg py-section scroll-mt-28">
+    <section id="blueprint-pricing" className="border-t border-white/[0.06] bg-dw-bg py-section scroll-mt-28">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">Snowflake Premium pricing envelopes</h2>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">Pricing envelopes · The Blueprint</h2>
           <p className="mt-4 font-sans text-base text-dw-muted">
             Snowflake consumption stays on your Snowflake invoice; Deadwood bills orchestration, APIs, and premium support.
           </p>
@@ -1076,7 +1076,7 @@ function SnowflakeWhyChoose() {
     <section className="border-t border-white/[0.06] bg-dw-bg py-section">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">Why desks choose Snowflake Premium</h2>
+          <h2 className="font-display text-[clamp(2rem,4vw,2.85rem)] text-dw-cream">Why desks choose The Blueprint</h2>
           <p className="mt-4 font-sans text-base text-dw-muted">
             One slide summary for steering committees comparing build, buy, or export paths.
           </p>
@@ -1088,7 +1088,7 @@ function SnowflakeWhyChoose() {
                 <th className="px-4 py-3">Dimension</th>
                 <th className="px-4 py-3">DIY</th>
                 <th className="px-4 py-3">Generic SaaS</th>
-                <th className="px-4 py-3 text-dw-tan">Snowflake Premium</th>
+                <th className="px-4 py-3 text-dw-tan">The Blueprint</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/[0.05] text-dw-muted">
@@ -1110,7 +1110,7 @@ function SnowflakeWhyChoose() {
         </div>
         <p className="mx-auto mt-8 max-w-3xl text-center font-sans text-sm text-dw-muted">
           At warehouse scale the decisive question is whether personalization stays aligned with residency, finance, and
-          velocity. Snowflake Premium is the lane built for yes on all three.
+          velocity. The Blueprint is the lane built for yes on all three.
         </p>
       </div>
     </section>
@@ -1131,7 +1131,7 @@ function SnowflakeFinalCTA() {
               Icon: EyeIcon,
               title: 'See it live',
               body: 'Thirty-minute architecture drill with Deadwood + your warehouse admins.',
-              href: '/contact/enterprise?intent=demo&product=snowflake-premium',
+              href: '/contact/enterprise?intent=demo&product=the-blueprint',
               label: 'Schedule demo',
               variant: 'solid' as const,
             },
@@ -1139,7 +1139,7 @@ function SnowflakeFinalCTA() {
               Icon: CalculatorIcon,
               title: 'Estimate costs',
               body: 'Dial row counts with finance in the room using the planner above.',
-              href: '#snowflake-calculator',
+              href: '#blueprint-calculator',
               label: 'Open calculator',
               variant: 'outline' as const,
             },
@@ -1147,7 +1147,7 @@ function SnowflakeFinalCTA() {
               Icon: RocketLaunchIcon,
               title: 'Pilot program',
               body: 'Six-week scoped pilot with clear promotion criteria.',
-              href: '/contact/enterprise?intent=pilot&product=snowflake-premium',
+              href: '/contact/enterprise?intent=pilot&product=the-blueprint',
               label: 'Start pilot',
               variant: 'outline' as const,
             },

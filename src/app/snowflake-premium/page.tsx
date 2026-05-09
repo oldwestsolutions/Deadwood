@@ -1,20 +1,6 @@
-import type { Metadata } from 'next';
-import { NavBar } from '@/components/marketing/NavBar';
-import { LandingFooter } from '@/components/marketing/LandingFooter';
-import { SnowflakePremiumOffering } from '@/components/marketing/SnowflakePremiumOffering';
+import { redirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Snowflake Premium — Deadwood',
-  description:
-    'Enterprise Snowflake Premium: train Deadwood models on petabyte-scale warehouses without bulk exports—economics, security, timelines, and ROI in one immersive brief.',
-};
-
-export default function SnowflakePremiumPage() {
-  return (
-    <div className="min-h-screen bg-dw-bg">
-      <NavBar />
-      <SnowflakePremiumOffering />
-      <LandingFooter />
-    </div>
-  );
+/** Legacy URL — product renamed to The Blueprint */
+export default function SnowflakePremiumRedirect() {
+  redirect('/the-blueprint');
 }
