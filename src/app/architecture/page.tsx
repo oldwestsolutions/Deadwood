@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { NavBar } from '@/components/marketing/NavBar';
+import { ChipOptimization } from '@/components/marketing/ChipOptimization';
 import { LandingFooter } from '@/components/marketing/LandingFooter';
 import { InfrastructureOffering } from '@/components/marketing/InfrastructureOffering';
 
@@ -14,6 +15,7 @@ export default function ArchitecturePage() {
     <div className="min-h-screen bg-dw-bg">
       <NavBar />
       <InfrastructureOffering />
+      <ChipOptimization />
       <LandingFooter />
     </div>
   );

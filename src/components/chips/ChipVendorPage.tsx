@@ -13,7 +13,7 @@ export function ChipVendorPage({ id }: { id: ChipVendorId }) {
           ← Home
         </Link>
         <Link
-          href="/#chip-optimization"
+          href="/architecture#chip-optimization"
           className="ml-6 font-mono text-sm text-dw-muted hover:text-dw-highlight"
         >
           All chips
